@@ -131,3 +131,20 @@ export const protectedProcedure = t.procedure
       },
     });
   });
+
+export const adminProcedure = t.procedure
+  .use(timingMiddleware) // NOTE: this dont apply in production
+  .use(({ ctx, next }) => {
+    if (!ctx.session || !ctx.session.user || !ctx.session.user.role) {
+      throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    if (ctx.session.user.role !== "ADMIN") {
+      throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    return next({
+      ctx: {
+        // infers the `session` as non-nullable
+        session: { ...ctx.session, user: ctx.session.user },
+      },
+    });
+  });

@@ -5,10 +5,15 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { type Adapter } from "next-auth/adapters";
-import DiscordProvider from "next-auth/providers/discord";
 
-import { env } from "@/env";
 import { db } from "@/server/db";
+import type { Role } from "@prisma/client";
+
+import CredentialsProvider from "next-auth/providers/credentials";
+import { LoginSchema } from "@/validators/zod";
+import { z } from "zod";
+
+import bcrypt from "bcryptjs";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -21,7 +26,7 @@ declare module "next-auth" {
     user: {
       id: string;
       // ...other properties
-      // role: UserRole;
+      role: Role;
     } & DefaultSession["user"];
   }
 
@@ -37,31 +42,87 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/login",
+    error: "/login",
+  },
+  session: { strategy: "jwt" },
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
+    jwt: async ({ token }) => {
+      const dbUser = await db.user.findFirst({
+        where: { id: token.sub },
+      });
+
+      return {
+        sub: token.sub,
+        ...dbUser,
+      };
+    },
+    session: ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+          role: token.role,
+        },
+      };
+    },
+  },
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text", placeholder: "johndoe" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) {
+          throw new Error("No credentials provided");
+        }
+
+        try {
+          LoginSchema.parse(credentials);
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            throw new Error(error.errors[0]!.message);
+          }
+        }
+
+        const user = await db.user.findFirst({
+          where: {
+            name: credentials?.username,
+          },
+        });
+
+        if (!user) {
+          throw new Error("Неверные данные");
+        }
+
+        // means user trying login to discord account
+        if (!user.password) {
+          throw new Error("Неверные данные");
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const passwordMatch = await bcrypt.compare(
+          credentials.password,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          user.password,
+        );
+
+        if (!passwordMatch) {
+          throw new Error("Неверный пароль");
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { password, ...payload } = user;
+
+        return payload;
       },
     }),
-  },
-  adapter: PrismaAdapter(db) as Adapter,
-  providers: [
-    DiscordProvider({
-      clientId: env.DISCORD_CLIENT_ID,
-      clientSecret: env.DISCORD_CLIENT_SECRET,
-    }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
   ],
+  adapter: PrismaAdapter(db) as Adapter,
 };
 
 /**
