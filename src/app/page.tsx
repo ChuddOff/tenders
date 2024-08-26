@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SlArrowDown } from "react-icons/sl";
 
 import React from "react";
 
@@ -156,6 +157,34 @@ export default async function Home() {
               className="h-[105px]"
               alt="google"
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col items-center gap-[50px]">
+        <div className="flex items-center justify-center gap-[30px]">
+          <hr className="h-[2px] w-[300px] bg-main" />
+          <h3 className="text-center text-[40px] font-semibold">Услуги</h3>
+          <hr className="h-[2px] w-[300px] bg-main" />
+        </div>
+
+        <div className="flex items-center justify-center gap-[25px]">
+          <div></div>
+          <div className="flex h-[740px] w-[365px] flex-col items-center justify-start gap-[25px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
+            <h3 className="text-center text-[24px] font-semibold leading-[167%] text-black">
+              г. Астана <br /> Акмолинская область
+            </h3>
+            <hr className="h-[2px] w-[300px] bg-main" />
+            <p className="text-center text-[24px] font-semibold leading-[167%] text-black">
+              В каталоге 10 126 лотов.
+            </p>
+            <div className="flex">
+              <p>Сортировать по:</p>
+              <div>
+                <p>Сумма</p>
+                <SlArrowDown className="h-[12px] w-[12px]" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
