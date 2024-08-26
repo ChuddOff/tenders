@@ -1,67 +1,164 @@
 import Link from "next/link";
 
-import { LatestPost } from "@/app/_components/post";
-import { getServerAuthSession } from "@/server/auth";
-import { api, HydrateClient } from "@/trpc/server";
+import React from "react";
+
+import "../styles/globals.css";
 
 export default async function Home() {
-  const hello = await api.post.hello({ text: "from tRPC" });
-  const session = await getServerAuthSession();
-
-  void api.post.getLatest.prefetch();
-
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-          </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello ? hello.greeting : "Loading tRPC query..."}
-            </p>
-
-            <div className="flex flex-col items-center justify-center gap-4">
-              <p className="text-center text-2xl text-white">
-                {session && <span>Logged in as {session.user?.name}</span>}
-              </p>
-              <Link
-                href={session ? "/api/auth/signout" : "/api/auth/signin"}
-                className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
-              >
-                {session ? "Sign out" : "Sign in"}
-              </Link>
-            </div>
-          </div>
-
-          {session?.user && <LatestPost />}
+    <main className="w-full">
+      <div className="flex w-full flex-col items-center gap-[50px]">
+        <div className="flex items-center justify-center gap-[30px]">
+          <hr className="h-[2px] w-[300px] bg-main" />
+          <h3 className="text-center text-[40px] font-semibold">
+            Как это работает
+          </h3>
+          <hr className="h-[2px] w-[300px] bg-main" />
         </div>
-      </main>
-    </HydrateClient>
+
+        <div className="flex">
+          <section className="px-[40px] py-[80px]">
+            <div className="flex">
+              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main">
+                01
+              </p>
+              <p className="text-[24px] font-semibold leading-[150%] text-main">
+                Бесплатно <br /> зарегистрируйтесь
+              </p>
+            </div>
+            <h4 className="w-[360px]">
+              Создайте аккаунт для своей компании, это займет всего пару минут
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim{" "}
+            </h4>
+          </section>
+          <section className="border-x-[1px] border-main px-[40px] py-[80px]">
+            <div className="flex">
+              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main">
+                02
+              </p>
+              <p className="text-[24px] font-semibold leading-[150%] text-main">
+                Получите личного <br /> менеджера
+              </p>
+            </div>
+            <h4 className="w-[360px]">
+              Он поможет вам настроить параметры рассылки в Личном кабинете и
+              будет консультировать вас по всем вопросам Lorem ipsum dolor sit
+              amet, consectetur adipiscing elit, sed do eiusmod tempor
+            </h4>
+          </section>
+          <section className="px-[40px] py-[80px]">
+            <div className="flex">
+              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main">
+                03
+              </p>
+              <p className="text-[24px] font-semibold leading-[150%] text-main">
+                Выигрывайте <br /> заказы и тендеры
+              </p>
+            </div>
+            <h4 className="w-[360px]">
+              Просматривайте информацию о закупках, принимайте участие и
+              выигрывайте! Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit, sed do eiusmod tempor incididunt ut labore et dolore
+            </h4>
+          </section>
+        </div>
+      </div>
+      <div className="flex w-full flex-col items-center gap-[50px]">
+        <div className="flex items-center justify-center gap-[30px]">
+          <hr className="h-[2px] w-[300px] bg-main" />
+          <h3 className="text-center text-[40px] font-semibold">Услуги</h3>
+          <hr className="h-[2px] w-[300px] bg-main" />
+        </div>
+
+        <div className="flex">
+          <section className="flex flex-col gap-[20px] px-[40px] py-[80px]">
+            <div className="flex h-[98px] w-[98px] items-center justify-center rounded-[10px] border-[1px] border-main">
+              <img
+                src="./cloud.svg"
+                alt="cloud"
+                className="w-[50px] rounded-[50px]"
+              />
+            </div>
+            <p className="text-[24px] font-semibold leading-[150%] text-main">
+              Прохождение ПКО
+            </p>
+            <h4 className="w-[360px]">
+              Join us as a UX Designer and help shape exceptional user
+              experiences. Conduct user research, analyze data, and create
+              wireframes and prototypes to design intuitive and user-centric
+              interfaces. Collaborate closely with UI Designers, developers, and
+              stakeholders to ensure seamless and enjoyable user journeys.
+            </h4>
+            <button className="flex h-[60px] w-[380px] flex-row items-center justify-center gap-[10px] rounded-lg bg-main p-[18px_16px] text-white">
+              Apply Now
+            </button>
+          </section>
+          <section className="flex flex-col gap-[20px] px-[40px] py-[80px]">
+            <div className="flex h-[98px] w-[98px] items-center justify-center rounded-[10px] border-[1px] border-main">
+              <img
+                src="./purpous.svg"
+                alt="cloud"
+                className="w-[50px] rounded-[50px]"
+              />
+            </div>
+            <p className="text-[24px] font-semibold leading-[150%] text-main">
+              Прохождение ПКО
+            </p>
+            <h4 className="w-[360px]">
+              Join us as a UX Designer and help shape exceptional user
+              experiences. Conduct user research, analyze data, and create
+              wireframes and prototypes to design intuitive and user-centric
+              interfaces. Collaborate closely with UI Designers, developers, and
+              stakeholders to ensure seamless and enjoyable user journeys.
+            </h4>
+            <button className="flex h-[60px] w-[380px] flex-row items-center justify-center gap-[10px] rounded-lg bg-main p-[18px_16px] text-white">
+              Apply Now
+            </button>
+          </section>
+          <section className="flex flex-col gap-[20px] px-[40px] py-[80px]">
+            <div className="flex h-[98px] w-[98px] items-center justify-center rounded-[10px] border-[1px] border-main">
+              <img
+                src="./sheet.svg"
+                alt="cloud"
+                className="w-[50px] rounded-[50px]"
+              />
+            </div>
+            <p className="text-[24px] font-semibold leading-[150%] text-main">
+              Проверка контрагентов
+            </p>
+            <h4 className="w-[360px]">
+              Join us as a UX Designer and help shape exceptional user
+              experiences. Conduct user research, analyze data, and create
+              wireframes and prototypes to design intuitive and user-centric
+              interfaces. Collaborate closely with UI Designers, developers, and
+              stakeholders to ensure seamless and enjoyable user journeys.
+            </h4>
+            <button className="flex h-[60px] w-[380px] flex-row items-center justify-center gap-[10px] rounded-lg bg-main p-[18px_16px] text-white">
+              Apply Now
+            </button>
+          </section>
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col items-center gap-[50px]">
+        <div className="flex items-center justify-center gap-[30px]">
+          <hr className="h-[2px] w-[300px] bg-main" />
+          <h3 className="text-center text-[40px] font-semibold">Услуги</h3>
+          <hr className="h-[2px] w-[300px] bg-main" />
+        </div>
+
+        <div className="w-[99vw] overflow-hidden">
+          <div className="marquee-content flex gap-[30px] whitespace-nowrap">
+            <img
+              src="https://w7.pngwing.com/pngs/523/198/png-transparent-google-logo-google-search-google-play-google-text-logo-number-thumbnail.png"
+              className="h-[105px]"
+              alt="google"
+            />
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
