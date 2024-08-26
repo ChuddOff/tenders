@@ -44,6 +44,7 @@ declare module "next-auth" {
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
+    signOut: "/login",
     error: "/login",
   },
   session: { strategy: "jwt" },
@@ -73,11 +74,11 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "johndoe" },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("No credentials provided");
         }
 
@@ -89,9 +90,9 @@ export const authOptions: NextAuthOptions = {
           }
         }
 
-        const user = await db.user.findFirst({
+        const user = await db.user.findUnique({
           where: {
-            name: credentials?.username,
+            email: credentials?.email,
           },
         });
 

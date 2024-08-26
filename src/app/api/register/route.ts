@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { RegisterSchema } from "@/validators/zod";
-import type { registerPayload } from "@/app/_components/utils";
+import type { registerPayload } from "@/app/_components/utils/auth";
 
 export async function POST(req: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

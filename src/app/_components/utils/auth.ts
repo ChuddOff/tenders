@@ -7,6 +7,11 @@ export interface registerPayload {
   password: string;
 }
 
+export interface loginPayload {
+  email: string;
+  password: string;
+}
+
 const registerApiUrl = "/api/register";
 
 export async function registerFn(credentials: registerPayload) {

@@ -35,11 +35,11 @@ export const RegisterSchema = z.object({
     .string()
     .min(1, { message: "Company name не может быть пустым" }),
   stationaryNumber: z
-    .number()
+    .string()
     .min(1, { message: "Stationary number не может быть пустым" })
     .max(12, { message: "Stationary number не может быть больше 10 символов" }),
   mobileNumber: z
-    .number()
+    .string()
     .min(1, { message: "Mobile number не может быть пустым" })
     .max(12, { message: "Mobile number не может быть больше 10 символов" }),
   email: z.string().email({ message: "Email не может быть пустым" }),

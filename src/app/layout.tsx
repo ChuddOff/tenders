@@ -5,8 +5,8 @@ import { type Metadata } from "next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 
-import Header from "./_components/shared/Header/Header";
-import Navbar from "./_components/shared/Navbar/Navbar";
+import Header from "./_components/shared/Header";
+import Navbar from "./_components/shared/Navbar";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
