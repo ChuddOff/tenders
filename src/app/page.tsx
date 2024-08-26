@@ -164,7 +164,9 @@ export default async function Home() {
       <div className="flex w-full flex-col items-center gap-[50px]">
         <div className="flex items-center justify-center gap-[30px]">
           <hr className="h-[2px] w-[300px] bg-main" />
-          <h3 className="text-center text-[40px] font-semibold">Услуги</h3>
+          <h3 className="text-center text-[40px] font-semibold">
+            Геокарта тендеров
+          </h3>
           <hr className="h-[2px] w-[300px] bg-main" />
         </div>
 
