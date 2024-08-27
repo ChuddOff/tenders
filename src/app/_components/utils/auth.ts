@@ -12,6 +12,10 @@ export interface loginPayload {
   password: string;
 }
 
+interface registerResponse {
+  error?: string;
+}
+
 const registerApiUrl = "/api/register";
 
 export async function registerFn(credentials: registerPayload) {
@@ -22,7 +26,9 @@ export async function registerFn(credentials: registerPayload) {
     },
     body: JSON.stringify(credentials),
     cache: "no-store",
-  });
+  }).then((res) => res.clone().json() as Promise<registerResponse>);
 
-  return response.json() as Promise<registerPayload>;
+  if (response.error) {
+    throw new Error(response.error);
+  }
 }

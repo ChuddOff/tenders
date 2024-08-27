@@ -7,6 +7,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 
 import Header from "./_components/shared/Header";
 import Navbar from "./_components/shared/Navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -20,9 +21,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <Header />
-        <Navbar />
-        <TRPCReactProvider>{children}</TRPCReactProvider>
+        <TRPCReactProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );

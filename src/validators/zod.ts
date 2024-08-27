@@ -30,18 +30,22 @@ export const LoginSchema = z.object({
 });
 
 export const RegisterSchema = z.object({
-  username: z.string().min(1, { message: "Username не может быть пустым" }),
-  companyName: z
+  username: z
     .string()
-    .min(1, { message: "Company name не может быть пустым" }),
-  stationaryNumber: z
-    .string()
-    .min(1, { message: "Stationary number не может быть пустым" })
-    .max(12, { message: "Stationary number не может быть больше 10 символов" }),
-  mobileNumber: z
-    .string()
-    .min(1, { message: "Mobile number не может быть пустым" })
-    .max(12, { message: "Mobile number не может быть больше 10 символов" }),
+    .min(1, { message: "Имя пользователя не может быть пустым" }),
   email: z.string().email({ message: "Email не может быть пустым" }),
   password: z.string().min(1, { message: "Пароль не может быть пустым" }),
+  companyName: z
+    .string()
+    .min(1, { message: "Название компании не может быть пустым" }),
+  stationaryNumber: z
+    .string()
+    .min(1, { message: "Стационарный номер не может быть пустым" })
+    .max(12, {
+      message: "Стационарный номер не может быть больше 10 символов",
+    }),
+  mobileNumber: z
+    .string()
+    .min(1, { message: "Мобильный номер не может быть пустым" })
+    .max(12, { message: "Мобильный номер не может быть больше 10 символов" }),
 });

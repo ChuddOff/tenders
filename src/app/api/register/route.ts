@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { RegisterSchema } from "@/validators/zod";
 import type { registerPayload } from "@/app/_components/utils/auth";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function POST(req: NextRequest) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -15,27 +16,43 @@ export async function POST(req: NextRequest) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         {
-          success: false,
           error: error.errors[0]!.message,
         },
         {
-          status: 400,
+          status: 401,
         },
       );
     }
   }
 
-  const userExist = await db.user.findUnique({
-    where: {
-      email: body.email,
-    },
-  });
+  const userExist = await db.user
+    .findUnique({
+      where: {
+        email: body.email,
+      },
+    })
+    .catch((error) => {
+      if (error instanceof PrismaClientKnownRequestError) {
+        return NextResponse.json(
+          {
+            error: "Ощибка сервера",
+          },
+          {
+            status: 401,
+          },
+        );
+      }
+    });
 
   if (userExist) {
-    return NextResponse.json({
-      success: false,
-      error: "User with this email already exist",
-    });
+    return NextResponse.json(
+      {
+        error: "Аккаунт с таким email уже существует",
+      },
+      {
+        status: 401,
+      },
+    );
   }
 
   const hashedPassword = await bcrypt.hash(body.password, 10);
@@ -48,5 +65,5 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return NextResponse.json({ success: true, error: null });
+  return NextResponse.json({ error: null });
 }

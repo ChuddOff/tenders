@@ -14,6 +14,7 @@ import { LoginSchema } from "@/validators/zod";
 import { z } from "zod";
 
 import bcrypt from "bcryptjs";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -90,11 +91,17 @@ export const authOptions: NextAuthOptions = {
           }
         }
 
-        const user = await db.user.findUnique({
-          where: {
-            email: credentials?.email,
-          },
-        });
+        const user = await db.user
+          .findUnique({
+            where: {
+              email: credentials?.email,
+            },
+          })
+          .catch((error) => {
+            if (error instanceof PrismaClientKnownRequestError) {
+              throw new Error("Ошибка сервера");
+            }
+          });
 
         if (!user) {
           throw new Error("Неверные данные");

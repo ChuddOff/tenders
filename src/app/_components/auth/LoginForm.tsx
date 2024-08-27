@@ -7,10 +7,11 @@ import {
 } from "react-hook-form";
 import { type loginPayload } from "../utils/auth";
 import { signIn } from "next-auth/react";
-
-function ErrorMessage({ message }: { message: string }) {
-  return <p className="text-red-500">{message}</p>;
-}
+import ErrorMessage from "./ErrorMessage";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import Spinner from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const {
@@ -19,22 +20,38 @@ export default function LoginForm() {
     getValues,
     formState: { errors },
   } = useForm<loginPayload>();
+  const [isPending, setIsPending] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const router = useRouter();
 
-  const onSubmit: SubmitHandler<loginPayload> = () => {
-    void signIn("credentials", {
+  const onSubmit: SubmitHandler<loginPayload> = async () => {
+    setIsPending(true);
+    const res = await signIn("credentials", {
       email: getValues("email"),
       password: getValues("password"),
+      redirect: false,
     });
+
+    if (res?.status === 200) {
+      router.push("/");
+    } else {
+      if (res?.error) {
+        setAuthError(res.error);
+        setIsPending(false);
+      }
+    }
   };
 
   const inputs: {
     name: keyof loginPayload;
+    label: string;
     type: string;
     placeholder: string;
     validators?: RegisterOptions<loginPayload, keyof loginPayload>;
   }[] = [
     {
       name: "email",
+      label: "Email",
       type: "text",
       placeholder: "Email",
       validators: {
@@ -46,6 +63,7 @@ export default function LoginForm() {
     },
     {
       name: "password",
+      label: "Пороль",
       type: "password",
       placeholder: "Password",
       validators: {
@@ -58,37 +76,46 @@ export default function LoginForm() {
   ];
 
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="flex w-full items-center justify-center overflow-hidden rounded-[20px] shadow-2xl">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full flex-col rounded-md bg-[#2b2b2bf2] p-5 font-sans text-white"
+        className="z-20 flex w-full flex-col rounded-[20px] border border-[#e8e8e8] px-5 py-3 font-sans text-black backdrop-blur-3xl"
       >
         <div className="mb-5">
-          <h1 className="text-2xl">Логин</h1>
-          <p className="text-[#bebebe]">Рады видеть вас снова!</p>
+          <h1 className="text-center text-2xl">Ввойдите в аккаунт</h1>
         </div>
 
         <div className="mb-4 flex flex-col gap-2">
-          {inputs.map((input) => (
-            <div key={input.name}>
-              {errors[input.name] && (
-                <ErrorMessage message={errors[input.name]!.message!} />
-              )}
-              <input
-                {...register(input.name, {
-                  ...input.validators,
-                })}
-                type={input.type}
-                className="w-full bg-transparent px-2 py-2 outline-none"
-                id={input.name}
-                placeholder={input.placeholder}
-              />
-            </div>
-          ))}
+          {authError && <ErrorMessage message={authError} />}
+          {inputs.map((input) => {
+            return (
+              <div key={input.name}>
+                <p className="mb-1">
+                  {errors[input.name] ? (
+                    <ErrorMessage message={errors[input.name]!.message!} />
+                  ) : (
+                    <>{input.label}</>
+                  )}
+                </p>
+                <input
+                  {...register(input.name, {
+                    ...input.validators,
+                  })}
+                  type={input.type}
+                  className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
+                  id={input.name}
+                  placeholder={input.placeholder}
+                />
+              </div>
+            );
+          })}
         </div>
-        <button type="submit" className="mb-7 rounded-md bg-[#4d4d4d] py-1">
-          Login
-        </button>
+        <Button
+          type="submit"
+          className={`mb-7 rounded-md bg-black py-1 text-white ${isPending && "opacity-30"}`}
+        >
+          Login {isPending && <Spinner className="ml-2 inline" />}
+        </Button>
       </form>
     </div>
   );
