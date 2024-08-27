@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 export default function AuthForm() {
   return (
     <div className="mt-2 flex w-full items-center justify-center px-2">
-      <Tabs defaultValue="account" className="w-[500px]">
+      <Tabs defaultValue="login" className="w-[500px]">
         <TabsList className="w-full">
           <TabsTrigger value="login" className="w-full">
             Login
