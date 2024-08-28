@@ -5,9 +5,9 @@ import avatar from "@/images/ava.jpg";
 import { IoMdSearch } from "react-icons/io";
 import Link from "next/link";
 
-const Header = () => {
+export default function Header() {
   return (
-    <header className="mx-auto flex max-w-[1000px] items-center justify-between px-9 pt-3">
+    <header className="mx-auto mb-6 mt-3 flex items-center justify-between">
       <Link href="/" className="text-3xl font-bold text-main">
         Tender
       </Link>
@@ -27,6 +27,4 @@ const Header = () => {
       <Image src={avatar} alt="avatar" className="h-9 w-9 rounded-full" />
     </header>
   );
-};
-
-export default Header;
+}

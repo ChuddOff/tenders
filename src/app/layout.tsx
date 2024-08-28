@@ -43,9 +43,13 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {/* Container */}
-            <Header />
-            <Navbar />
-            <div className="mx-auto max-w-[1400px] px-8">{children}</div>
+            <div className="mx-auto max-w-[1500px] px-9">
+              <div className="mb-7">
+                <Header />
+                <Navbar />
+              </div>
+              {children}
+            </div>
           </ThemeProvider>
         </TRPCReactProvider>
       </body>

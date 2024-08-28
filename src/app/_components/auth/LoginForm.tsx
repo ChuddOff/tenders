@@ -5,7 +5,7 @@ import {
   useForm,
   type SubmitHandler,
 } from "react-hook-form";
-import { type loginPayload } from "../utils/auth";
+import { type loginPayload } from "../../../utils/auth";
 import { signIn } from "next-auth/react";
 import ErrorMessage from "./ErrorMessage";
 import { Button } from "@/components/ui/button";

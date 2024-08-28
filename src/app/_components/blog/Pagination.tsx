@@ -30,6 +30,7 @@ export default function BlogPagination({
     { pagesLimit },
     {
       refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
     },
   );
 
@@ -45,7 +46,10 @@ export default function BlogPagination({
         <Pagination className="mt-6">
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious onClick={() => onPrevPageClick?.()} />
+              <PaginationPrevious
+                onClick={() => startPage !== currentPage && onPrevPageClick?.()}
+                className={`${startPage === currentPage ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+              />
             </PaginationItem>
             {Array.from(
               { length: endPage - startPage + 1 },
@@ -68,7 +72,10 @@ export default function BlogPagination({
               </PaginationItem>
             )}
             <PaginationItem>
-              <PaginationNext onClick={() => onNextPageClick?.()} />
+              <PaginationNext
+                onClick={() => endPage !== currentPage && onNextPageClick?.()}
+                className={`${endPage === currentPage ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
+              />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

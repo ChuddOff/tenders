@@ -5,7 +5,7 @@ import {
   useForm,
   type SubmitHandler,
 } from "react-hook-form";
-import { registerFn, type registerPayload } from "../utils/auth";
+import { registerFn, type registerPayload } from "../../../utils/auth";
 import { signIn } from "next-auth/react";
 import { useMutation } from "@tanstack/react-query";
 import Spinner from "@/components/ui/spinner";

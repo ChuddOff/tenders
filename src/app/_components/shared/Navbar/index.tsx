@@ -1,46 +1,89 @@
 "use client";
 
-import React from "react";
-import { IoMdSearch } from "react-icons/io";
-
-interface HeaderProps {}
+import * as React from "react";
 
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import ListItem from "./ListItem";
 
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import Link from "next/link";
+interface NavbarComponent {
+  trigger: string;
+  values: { title: string; href: string; description: string }[];
+}
 
-const Navbar = () => {
+const components: NavbarComponent[] = [
+  {
+    trigger: "Тендера",
+    values: [
+      {
+        title: "По областям",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "По площадкам",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+      {
+        title: "По категориям",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+    ],
+  },
+  {
+    trigger: "Партнерство",
+    values: [],
+  },
+  {
+    trigger: "Контрагенты",
+    values: [],
+  },
+  {
+    trigger: "Тарифы",
+    values: [],
+  },
+  {
+    trigger: "Договоры",
+    values: [],
+  },
+  {
+    trigger: "Еще",
+    values: [],
+  },
+];
+
+export default function Navingation() {
   return (
-    <nav className="mt-[30px] flex w-full items-center justify-center">
+    <div className="flex w-full justify-center">
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationMenuLink>Link</NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+          {components.map((component) => (
+            <NavigationMenuItem key={component.trigger}>
+              <NavigationMenuTrigger>{component.trigger}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {component.values.map((subcomponent) => (
+                    <ListItem
+                      key={subcomponent.title}
+                      title={subcomponent.title}
+                      href={subcomponent.href}
+                    >
+                      {subcomponent.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
-    </nav>
+    </div>
   );
-};
-
-export default Navbar;
+}

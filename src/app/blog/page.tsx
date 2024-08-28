@@ -26,13 +26,16 @@ export default function Blog() {
         <h1 className="font-comfortaa text-2xl font-medium">Наш Блог</h1>
       </div>
 
-      <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
-        {isNoPostFinded && <p className="text-center">Постов не найдено</p>}
+      {isNoPostFinded && <p className="text-center">Постов не найдено</p>}
+      <div className="grid grid-cols-2 gap-8 border-black max-md:grid-cols-1">
         {blogs.isPending ? (
           <>
             {/* Skeleton */}
             {Array.from({ length: pagesLimit }).map((_, index) => (
-              <div className="flex flex-col items-center py-3" key={index}>
+              <div
+                className="mx-auto flex max-h-[320px] max-w-[500px] flex-col items-center pb-7"
+                key={index}
+              >
                 <Skeleton className="mb-4 h-4 w-full" />
                 <Skeleton className="h-[300px] w-full max-md:h-[150px]" />
                 <div className="w-full space-y-2">
@@ -45,10 +48,8 @@ export default function Blog() {
           </>
         ) : (
           <>
-            {blogs.data?.posts.map((page, index) => (
-              <div key={index}>
-                <BlogItem item={page} />
-              </div>
+            {blogs.data?.posts.map((page) => (
+              <BlogItem item={page} key={page.id} />
             ))}
           </>
         )}

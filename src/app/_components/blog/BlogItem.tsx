@@ -13,17 +13,17 @@ interface Props {
 
 export default function BlogItem({ item }: Props) {
   return (
-    <Link
-      href={"/"}
-      className="max-w- flex w-full flex-col items-center border-b border-[#C2C2C2] py-3"
-    >
+    <Link href={"/"} className="flex w-full flex-col items-center pb-7">
       <p className="mb-4 max-w-[500px] font-comfortaa text-xl font-medium hover:underline max-lg:text-base">
         {item.title}
       </p>
-      <AspectRatio ratio={7 / 4} className="!block">
+      <AspectRatio
+        ratio={7 / 4}
+        className="mx-auto mb-5 max-h-[320px] max-w-[500px]"
+      >
         <Image
           src={imageSample}
-          className="mb-5 h-full w-full overflow-hidden rounded-xl"
+          className="h-full w-full overflow-hidden rounded-xl"
           alt="test"
         />
       </AspectRatio>
