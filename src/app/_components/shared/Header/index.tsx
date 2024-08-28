@@ -8,7 +8,9 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header className="mx-auto flex max-w-[1000px] items-center justify-between px-9 pt-3">
-      <h1 className="text-3xl font-bold text-main">Tender</h1>
+      <Link href="/" className="text-3xl font-bold text-main">
+        Tender
+      </Link>
       <div className="flex items-center gap-[12px] max-[570px]:hidden">
         <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
           <input
