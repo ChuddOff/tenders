@@ -20,7 +20,7 @@ export default async function Home() {
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
         </div>
 
-        <div className="flex flex-wrap max-[1410px]:flex-col">
+        <div className="flex flex-wrap justify-center">
           <section className="px-[40px]">
             <div className="flex gap-[24px]">
               <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
@@ -39,7 +39,7 @@ export default async function Home() {
               enim{" "}
             </h4>
           </section>
-          <section className="border-x-[1px] border-main px-[40px] max-[1410px]:my-[20px] max-[1410px]:border-x-[0px]">
+          <section className="border-x-[1px] border-main px-[40px] max-[1390px]:border-x-[0px]">
             <div className="flex gap-[24px]">
               <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
                 02
@@ -85,7 +85,7 @@ export default async function Home() {
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
         </div>
 
-        <div className="flex flex-wrap gap-[40px] max-[1410px]:flex-col">
+        <div className="flex flex-wrap justify-center gap-[40px]">
           <section className="flex flex-col gap-[20px]">
             <div className="flex h-[98px] w-[98px] items-center justify-center rounded-[10px] border-[1px] border-main">
               <img
@@ -186,58 +186,63 @@ export default async function Home() {
 
         <div className="flex items-center justify-center gap-[25px] max-[1410px]:flex-col">
           <div></div>
-          <div className="flex h-[740px] max-w-[365px] flex-col items-center justify-start gap-[25px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px] max-[700px]:p-[20px_10px]">
-            <h3 className="text-center text-[24px] font-semibold leading-[167%] text-black">
-              г. Астана <br /> Акмолинская область
-            </h3>
-            <hr className="h-[2px] w-[300px] bg-main" />
-            <p className="text-center text-[24px] font-semibold leading-[167%] text-black">
-              В каталоге 10 126 лотов.
-            </p>
-            <div className="flex gap-[5px]">
-              <p>Сортировать по:</p>
-              <div className="flex h-[30px] w-[88px] items-center justify-center gap-[10px] rounded-[6px] bg-[#d8d8d8]">
-                <p className="text-[14px] font-medium leading-[143%] text-[#0f172a]">
-                  Сумма
-                </p>
-                <SlArrowDown className="h-[9px] w-[9px]" />
-              </div>
-            </div>
-            <div className="flex h-[142px] w-[315px] flex-col items-center justify-center gap-[10px] rounded-[20px] bg-main p-[10px]">
-              <p className="w-[267px] text-[14px] font-normal text-[#e6e6e6]">
-                Работы по установке (монтажу) оборудования/приборов учета воды.
+          <div className="relative h-[740px] max-w-[365px] rounded-[20px] bg-[rgba(217,217,217,0.41)]">
+            <div className="z-1 absolute right-0 h-[200px] w-[200px] rounded-full bg-main blur-[100px]" />
+            <div className="z-1 absolute bottom-0 h-[200px] w-[200px] rounded-full bg-main blur-[100px]" />
+            <div className="relative z-10 flex flex-col items-center justify-start gap-[25px] p-[20px_30px] max-[700px]:p-[20px_10px]">
+              <h3 className="text-center text-[24px] font-semibold leading-[167%] text-black">
+                г. Астана <br /> Акмолинская область
+              </h3>
+              <hr className="h-[2px] w-[300px] bg-main" />
+              <p className="text-center text-[24px] font-semibold leading-[167%] text-black">
+                В каталоге 10 126 лотов.
               </p>
-              <div className="flex w-full justify-between px-[24px]">
+              <div className="flex gap-[5px]">
+                <p>Сортировать по:</p>
+                <div className="flex h-[30px] w-[88px] items-center justify-center gap-[10px] rounded-[6px] bg-[#d8d8d8]">
+                  <p className="text-[14px] font-medium leading-[143%] text-[#0f172a]">
+                    Сумма
+                  </p>
+                  <SlArrowDown className="h-[9px] w-[9px]" />
+                </div>
+              </div>
+              <div className="flex h-[142px] w-[315px] flex-col items-center justify-center gap-[10px] rounded-[20px] bg-main p-[10px]">
+                <p className="w-[267px] text-[14px] font-normal text-[#e6e6e6]">
+                  Работы по установке (монтажу) оборудования/приборов учета
+                  воды.
+                </p>
+                <div className="flex w-full justify-between px-[24px]">
+                  <div className="flex items-center justify-center gap-[5px]">
+                    <FaMoneyCheck className="h-[20px] w-[20px] text-greenl" />
+                    <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-white">
+                      4 730 000
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-center gap-[5px]">
+                    <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-greenl">
+                      Статус:
+                    </p>
+                    <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-white">
+                      4 730 000
+                    </p>
+                  </div>
+                </div>
                 <div className="flex items-center justify-center gap-[5px]">
-                  <FaMoneyCheck className="h-[20px] w-[20px] text-greenl" />
+                  <FaHandshakeSimple className="h-[12px] w-[20px] text-greenl" />
                   <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-white">
                     4 730 000
                   </p>
                 </div>
-                <div className="flex items-center justify-center gap-[5px]">
-                  <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-greenl">
-                    Статус:
-                  </p>
-                  <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-white">
-                    4 730 000
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-[5px]">
-                <FaHandshakeSimple className="h-[12px] w-[20px] text-greenl" />
-                <p className="text-[12px] font-medium leading-[150%] tracking-[-0.01em] text-white">
-                  4 730 000
+                <p className="text-[12px] font-normal text-white">
+                  24.08.2024 - 03.09.2024
                 </p>
               </div>
-              <p className="text-[12px] font-normal text-white">
-                24.08.2024 - 03.09.2024
-              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mb-[31px] mt-[50px] flex w-full justify-center gap-[160px] max-[1410px]:flex-col max-[1410px]:items-center max-[1410px]:gap-[60px]">
+      <div className="mb-[31px] mt-[50px] flex w-full justify-center gap-[160px] max-[1410px]:gap-[60px] max-[817px]:flex-col-reverse max-[817px]:items-center">
         <div className="flex w-full max-w-[353px] flex-col items-center gap-[50px]">
           <div className="flex w-full justify-center gap-[15px] max-[1410px]:justify-center">
             <h3 className="text-center text-[40px] font-semibold">Блог</h3>
