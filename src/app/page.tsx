@@ -20,10 +20,10 @@ export default async function Home() {
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
         </div>
 
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center max-[950px]:gap-[30px]">
           <section className="px-[40px]">
             <div className="flex gap-[24px]">
-              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
+              <p className="h-[120px] align-top text-[100px] font-semibold leading-[80px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
                 01
               </p>
               <div className="flex flex-col self-start border-b-[1px] border-black pb-[20px]">
@@ -41,7 +41,7 @@ export default async function Home() {
           </section>
           <section className="border-x-[1px] border-main px-[40px] max-[1390px]:border-x-[0px]">
             <div className="flex gap-[24px]">
-              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
+              <p className="h-[120px] align-top text-[100px] font-semibold leading-[80px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
                 02
               </p>
 
@@ -59,7 +59,7 @@ export default async function Home() {
           </section>
           <section className="px-[40px]">
             <div className="flex gap-[24px]">
-              <p className="h-[120px] align-top text-[120px] font-semibold leading-[100px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
+              <p className="h-[120px] align-top text-[100px] font-semibold leading-[80px] text-main max-[700px]:text-[80px] max-[700px]:leading-[70px]">
                 03
               </p>
               <div className="flex flex-col self-start border-b-[1px] border-black pb-[20px]">
