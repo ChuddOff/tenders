@@ -3,6 +3,7 @@ import React from "react";
 import { MdOutlineManageSearch } from "react-icons/md";
 import avatar from "@/images/ava.jpg";
 import { IoMdSearch } from "react-icons/io";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -15,7 +16,7 @@ const Header = () => {
             placeholder="Поиск по названию"
             className="cursor-text rounded-[12px] font-normal text-[#000000] focus:border-none focus:outline-none"
           />
-          <MdOutlineManageSearch size={19} className="text-main" />
+          <MdOutlineManageSearch size={25} className="text-main" />
         </div>
         <div className="flex items-center justify-center rounded-[100%] bg-main p-3">
           <IoMdSearch className="text-white" />

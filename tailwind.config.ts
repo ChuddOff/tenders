@@ -23,6 +23,7 @@ const config = {
         inter: ["var(--font-inter)"],
       },
       colors: {
+        greenl: "var(--green)",
         main: "var(--main)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
