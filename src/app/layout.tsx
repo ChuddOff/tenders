@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { Comfortaa } from "@next/font/google";
+import { Comfortaa, Inter } from "next/font/google";
 
 import { TRPCReactProvider } from "@/trpc/react";
 
@@ -21,11 +21,19 @@ export const comfortaa = Comfortaa({
   variable: "--font-comfortaa",
 });
 
+export const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${comfortaa.variable}`}>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${comfortaa.variable} ${inter.variable}`}
+    >
       <body>
         <TRPCReactProvider>
           <ThemeProvider

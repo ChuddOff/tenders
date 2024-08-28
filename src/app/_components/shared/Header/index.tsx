@@ -6,28 +6,22 @@ import { IoMdSearch } from "react-icons/io";
 
 const Header = () => {
   return (
-    <header className="mx-auto flex max-w-[1500px] items-center justify-between gap-[130px] px-9">
-      <h1 className="text-[42px] font-bold text-main">Tender</h1>
-      <div className="flex gap-[12px]">
+    <header className="mx-auto flex max-w-[1000px] items-center justify-between px-9 pt-3">
+      <h1 className="text-3xl font-bold text-main">Tender</h1>
+      <div className="flex items-center gap-[12px] max-[570px]:hidden">
         <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
           <input
             type="text"
             placeholder="Поиск по названию"
-            className="cursor-text rounded-[12px] text-[22px] font-normal text-[#000000] focus:border-none focus:outline-none"
+            className="cursor-text rounded-[12px] font-normal text-[#000000] focus:border-none focus:outline-none"
           />
           <MdOutlineManageSearch size={19} className="text-main" />
         </div>
-        <div className="flex items-center justify-center rounded-[100%] bg-main">
-          <IoMdSearch size={19} className="text-white" />
+        <div className="flex items-center justify-center rounded-[100%] bg-main p-3">
+          <IoMdSearch className="text-white" />
         </div>
       </div>
-      <Image
-        src={avatar}
-        alt="avatar"
-        className="rounded-full"
-        width={19}
-        height={19}
-      />
+      <Image src={avatar} alt="avatar" className="h-9 w-9 rounded-full" />
     </header>
   );
 };

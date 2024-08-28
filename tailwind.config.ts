@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        comfortaa: ["var(--font-comfortaa)"],
+        inter: ["var(--font-inter)"],
+      },
       colors: {
         main: "var(--main)",
         border: "hsl(var(--border))",
@@ -75,6 +79,7 @@ const config = {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 

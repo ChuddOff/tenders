@@ -5,32 +5,37 @@ import { ContentValidator } from "@/validators/zod";
 
 export const blogRouter = createTRPCRouter({
   getLatestPosts: publicProcedure
-    .input(z.object({ limit: z.number(), cursor: z.string().nullish() }))
-    .query(async ({ input, ctx }) => {
-      const currentCursor = Number(input.cursor) ?? undefined;
-
+    .input(z.object({ limit: z.number(), cursor: z.number() }))
+    .mutation(async ({ input, ctx }) => {
+      console.log(input.cursor, input.limit);
       const posts = await ctx.db.post.findMany({
         orderBy: {
           createdAt: "desc",
         },
         take: input.limit,
-        skip: currentCursor ? input.limit * currentCursor - 1 : 0,
+        skip: (input.cursor - 1) * input.limit,
       });
 
       if (!posts) {
         return {
-          items: [],
-          nextCursor: undefined,
+          posts: [],
         };
       }
 
       return {
         posts,
-        nextCursor: currentCursor ? currentCursor + 1 : undefined,
       };
     }),
 
-  createPost: publicProcedure // TODO: replace it
+  getTotalPostsNum: publicProcedure
+    .input(z.object({ pagesLimit: z.number() }))
+    .query(async ({ ctx, input }) => {
+      const postsCount = await ctx.db.post.count();
+
+      return Math.ceil(postsCount / input.pagesLimit);
+    }),
+
+  createPost: publicProcedure // TODO: replace it with protected procedure
     .input(z.object({ title: z.string(), content: ContentValidator }))
     .mutation(async ({ input, ctx }) => {
       return await ctx.db.post.create({
