@@ -1,5 +1,21 @@
 "use client";
+
+import Link from "next/link";
+import { SlArrowDown } from "react-icons/sl";
+import {
+  FaAccessibleIcon,
+  FaHandshakeSimple,
+  FaRegFileLines,
+  FaRegHandshake,
+  FaSearchengin,
+  FaStar,
+} from "react-icons/fa6";
+import { FaMoneyCheck } from "react-icons/fa";
 import React from "react";
+import { GoArrowUpRight } from "react-icons/go";
+
+import { GoGitPullRequest } from "react-icons/go";
+import { FaCommentAlt } from "react-icons/fa";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import { RiFolderChart2Line } from "react-icons/ri";
@@ -25,15 +41,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { TrendingUp } from "lucide-react";
-import {
-  FaAccessibleIcon,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -69,7 +76,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
       <div className="flex w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
@@ -201,10 +208,12 @@ export default function Home() {
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">
-          Тендеры по области Казахстана
+          Тендеры по категориям
         </h1>
         <h2 className="max-w-[418px] text-[18px] font-semibold text-black">
-          Выберите нужную вам область, чтобы посмотреть тендерыв по этой области
+          Раздел «Тендеры по категориям» работает на основе анализа текстов
+          лотов и не может гарантировать точное соответствие категории и
+          найденных лотов.
         </h2>
         <ul className="flex w-full flex-wrap justify-between gap-[20px]">
           {Array(5)
@@ -225,7 +234,7 @@ export default function Home() {
               </li>
             ))}
         </ul>
-        <Card className="w-full max-w-[500px]">
+        <Card>
           <CardHeader>
             <CardTitle>Bar Chart - Mixed</CardTitle>
             <CardDescription>January - June 2024</CardDescription>

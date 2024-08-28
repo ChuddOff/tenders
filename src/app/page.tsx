@@ -7,11 +7,37 @@ import { GoArrowUpRight } from "react-icons/go";
 
 import "../styles/globals.css";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default async function Home() {
   return (
     <main className="w-full">
-      <div className="flex w-full flex-col items-center gap-[50px]">
+      <Carousel className="mt-[50px] max-h-[670px] w-full">
+        <CarouselContent className="max-h-[670px]">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index} className="max-h-[670px]">
+              <div className="p-1">
+                <Card className="max-h-[656px] w-full">
+                  <CardContent className="flex aspect-square max-h-[656px] items-center justify-center p-6">
+                    <span className="text-4xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
         <div className="flex w-full items-center justify-center gap-[30px]">
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
           <h3 className="whitespace-nowrap text-center text-[40px] font-semibold max-[700px]:text-[30px]">
