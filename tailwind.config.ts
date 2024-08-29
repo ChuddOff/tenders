@@ -23,8 +23,12 @@ const config = {
         inter: ["var(--font-inter)"],
       },
       colors: {
-        greenl: "var(--green)",
-        main: "var(--main)",
+        greenl: "#8ecc29",
+        main: "#303030",
+        lime: {
+          100: "#D8FF99",
+          600: "#B1FF33",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

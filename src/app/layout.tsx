@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${comfortaa.variable} ${inter.variable}`}
     >
-      <body>
+      <body className="overflow-x-hidden">
         <TRPCReactProvider>
           <ThemeProvider
             attribute="class"
@@ -43,7 +43,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {/* Container */}
-            <div className="mx-auto max-w-[1500px] px-9">
+            <div className="mx-auto max-w-[1500px] px-5">
               <div className="mb-7">
                 <Header />
                 <Navbar />
