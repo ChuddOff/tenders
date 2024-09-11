@@ -17,6 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 export default async function Home() {
   const howItWorksCards = [
@@ -75,16 +76,24 @@ export default async function Home() {
     },
   ];
 
+  const carouselItems: string[] = [
+    "/carousel/1.png",
+    "/carousel/2.png",
+    "/carousel/3.png",
+    "/carousel/4.png",
+    "/carousel/5.png",
+  ];
+
   return (
     <main className="w-full">
       <Carousel className="mt-[50px] max-h-[670px] w-full">
         <CarouselContent className="max-h-[670px]">
-          {Array.from({ length: 5 }).map((_, index) => (
+          {carouselItems.map((item, index) => (
             <CarouselItem key={index} className="max-h-[670px]">
-              <div className="p-1">
-                <Card className="max-h-[656px] w-full">
-                  <CardContent className="flex aspect-square max-h-[656px] items-center justify-center p-6">
-                    <span className="text-4xl font-semibold">{index + 1}</span>
+              <div className="p-0">
+                <Card className="h-[656px] w-full overflow-hidden p-0">
+                  <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
+                    <Image src={item} alt="test" width={1500} height={1500} />
                   </CardContent>
                 </Card>
               </div>
@@ -163,7 +172,7 @@ export default async function Home() {
       </div>
 
       {/* Work with us */}
-      <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
+      {/* <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
         <div className="flex w-full items-center justify-center gap-[30px] max-[464px]:gap-[15px]">
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
           <h3 className="whitespace-nowrap text-center font-comfortaa text-xl font-semibold">
@@ -181,11 +190,11 @@ export default async function Home() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Map */}
 
-      <div className="flex w-full flex-col items-center gap-[50px]">
+      <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
         <div className="flex w-full items-center justify-center gap-[30px] max-[464px]:gap-[15px]">
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
           <h3 className="whitespace-nowrap text-center font-comfortaa text-xl font-semibold">
