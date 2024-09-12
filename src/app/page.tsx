@@ -17,6 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import Map from "@/app/_components/Map/Map";
 import Image from "next/image";
 
 export default async function Home() {
@@ -84,20 +85,21 @@ export default async function Home() {
     "/carousel/5.png",
   ];
 
+
   return (
     <main className="w-full">
       <Carousel className="mt-[50px] max-h-[670px] w-full">
         <CarouselContent className="max-h-[670px]">
           {carouselItems.map((item, index) => (
-            <CarouselItem key={index} className="max-h-[670px]">
-              <div className="p-0">
-                <Card className="h-[656px] w-full overflow-hidden p-0">
-                  <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
-                    <Image src={item} alt="test" width={1500} height={1500} />
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
+              <CarouselItem key={index} className="max-h-[670px]">
+                <div className="p-0">
+                  <Card className="h-[656px] w-full overflow-hidden p-0">
+                    <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
+                      <Image src={item} alt="test" width={1500} height={1500} />
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious />
@@ -172,7 +174,7 @@ export default async function Home() {
       </div>
 
       {/* Work with us */}
-      {/* <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
+      <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
         <div className="flex w-full items-center justify-center gap-[30px] max-[464px]:gap-[15px]">
           <hr className="h-[2px] w-full max-w-[300px] bg-main" />
           <h3 className="whitespace-nowrap text-center font-comfortaa text-xl font-semibold">
@@ -190,53 +192,11 @@ export default async function Home() {
             />
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Map */}
 
-      <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
-        <div className="flex w-full items-center justify-center gap-[30px] max-[464px]:gap-[15px]">
-          <hr className="h-[2px] w-full max-w-[300px] bg-main" />
-          <h3 className="whitespace-nowrap text-center font-comfortaa text-xl font-semibold">
-            Геокарта тендеров
-          </h3>
-          <hr className="h-[2px] w-full max-w-[300px] bg-main" />
-        </div>
-
-        <div className="flex items-center justify-center gap-[25px] max-[1410px]:flex-col">
-          {/* Map */}
-          <div></div>
-
-          {/* Map right item */}
-          <div className="relative max-w-[365px] rounded-[20px] bg-[rgba(217,217,217,0.41)]">
-            <div className="-z-1 absolute right-0 h-[200px] w-[200px] rounded-full bg-main blur-[100px]" />
-            <div className="-z-1 absolute bottom-0 h-[200px] w-[200px] rounded-full bg-main blur-[100px]" />
-            <div className="relative z-10 flex flex-col items-center justify-start gap-[25px] p-[20px_30px] max-[700px]:p-[20px_10px]">
-              <h3 className="text-center text-[24px] font-semibold leading-[167%] text-black">
-                г. Астана <br /> Акмолинская область
-              </h3>
-              <hr className="h-[2px] w-[300px] bg-main" />
-              <p className="text-center text-[24px] font-semibold leading-[167%] text-black">
-                В каталоге 10 126 лотов.
-              </p>
-              <div className="flex items-center gap-1">
-                <p>Сортировать по:</p>
-                <div className="flex items-center gap-[10px] rounded-[6px] bg-[#D8D8D8] px-2 py-1">
-                  <p className="text-[14px] font-medium leading-[143%] text-[#0f172a]">
-                    Сумма
-                  </p>
-                  <SlArrowDown size={9} />
-                </div>
-              </div>
-              <div className="flex flex-col gap-5">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <GeomapTenderCard key={i} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Map/>
 
       <div className="mt-5 flex items-start justify-center gap-14 max-[1060px]:flex-col max-[1060px]:items-center">
         {/* Blog item */}
