@@ -35,27 +35,172 @@ const components: NavbarComponent[] = [
         href: "/tenders/by-categories",
         description: "Все тендера по категориям",
       },
+      {
+        title: "По предоплате",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Все тендеры Казахстана",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Все тендеры России",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
     ],
   },
   {
     trigger: "Партнерство",
-    values: [],
+    values: [
+      {
+        title: "Найти партнера",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "Об услуге",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+    ],
   },
   {
     trigger: "Контрагенты",
-    values: [],
+    values: [
+      {
+        title: "Проверить контрагента",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "Об услуге",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+    ],
   },
   {
     trigger: "Тарифы",
-    values: [],
+    values: [
+      {
+        title: "Тендеры",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "Контрагенты",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+      {
+        title: "Договоры",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Нерезиденты",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Обучение",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "ПКО",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Дополнительные услуги",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Реклама на сайте",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+    ],
+  },
+  {
+    trigger: "Планы",
+    values: [
+      {
+        title: "Планы",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+    ],
   },
   {
     trigger: "Договоры",
-    values: [],
+    values: [
+      {
+        title: "Договоры",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "Предметы договоров",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+      {
+        title: "Об услуге",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+    ],
   },
   {
     trigger: "Еще",
-    values: [],
+    values: [
+      {
+        title: "Аналитика по договорам",
+        href: "/tenders/by-areas",
+        description: "Все тендера по областям Казахстана",
+      },
+      {
+        title: "Аналитика по лотам",
+        href: "/tenders/by-sites",
+        description: "Все тендера по площадкам",
+      },
+      {
+        title: "Блог",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Помощь по сайту",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "Анкета ЭЦП",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "ОКЭД",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "ТН ВЭД",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+      {
+        title: "КАТО",
+        href: "/tenders/by-categories",
+        description: "Все тендера по категориям",
+      },
+    ],
   },
 ];
 
