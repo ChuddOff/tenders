@@ -4,6 +4,7 @@ import { MdOutlineManageSearch } from "react-icons/md";
 import avatar from "@/images/ava.jpg";
 import { IoMdSearch } from "react-icons/io";
 import Link from "next/link";
+import { DarkMode } from "../darkMode";
 
 export default function Header() {
   return (
@@ -24,7 +25,10 @@ export default function Header() {
           <IoMdSearch className="text-white" />
         </div>
       </div>
-      <Image src={avatar} alt="avatar" className="h-9 w-9 rounded-full" />
+      <div className="flex gap-[30px]">
+        <DarkMode />
+        <Image src={avatar} alt="avatar" className="h-9 w-9 rounded-full" />
+      </div>
     </header>
   );
 }
