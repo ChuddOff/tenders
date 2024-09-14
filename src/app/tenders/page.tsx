@@ -49,9 +49,40 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LoginForm from "../_components/auth/LoginForm";
 import RegisterForm from "../_components/auth/RegisterForm";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSubContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+} from "@radix-ui/react-dropdown-menu";
 
 export default function Home() {
+  const FormSchema = z.object({
+    type: z.enum(["all", "mentions", "none"], {
+      required_error: "You need to select a notification type.",
+    }),
+  });
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
       <div className="flex w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
@@ -248,9 +279,43 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center justify-center gap-[10px]">
               <p>Заплание </p>
-              <div className="flex items-center gap-[10px]">
+              <div className="flex items-center gap-[5px]">
                 <p>₸ 27 185 954 330</p>
-                <RiArrowDownSFill />
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="w-[40px] p-0">
+                      <RiArrowDownSFill />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="flex w-56 flex-col items-center justify-center">
+                    <DropdownMenuLabel className="text-[20px] font-medium">
+                      Другие валюты
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <p>
+                          <span className="font-medium">RUB</span> 185 954 330
+                        </p>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <p>
+                          <span className="font-medium">USD</span> 954 330
+                        </p>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <p>
+                          <span className="font-medium">EUR</span> 330
+                        </p>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuGroup className="mt-[10px]">
+                      <DropdownMenuItem className="text-[12px]">
+                        <span>По курсу НБ РК на 14.09.2024</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
               <p className="">Статус: Приём заявок</p>
             </div>
@@ -278,13 +343,10 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-2 flex w-full items-center justify-center px-2">
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs defaultValue="login" className="w-full" defaultValue={"info"}>
             <TabsList className="w-full">
               <TabsTrigger value="info" className="w-full">
                 Информация по лоту
-              </TabsTrigger>
-              <TabsTrigger value="comments" className="w-full">
-                Комментарии
               </TabsTrigger>
               <TabsTrigger value="partnership" className="w-full">
                 Партнерство (3)
@@ -338,36 +400,84 @@ export default function Home() {
                 <p>*22123.200.000005</p>
               </div>
             </TabsContent>
-            <TabsContent
-              value="comments"
-              className="mt-[20px] flex flex-col gap-[20px]"
-            >
-              <div>
-                <div className="flex gap-[10px]">
-                  <FaRegHandshake />
-                  <h3>Оставить заявку на партнерство</h3>
-                </div>
-                <RadioGroup defaultValue="comfortable">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="default" id="r1" />
-                    <Label htmlFor="r1">Default</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="comfortable" id="r2" />
-                    <Label htmlFor="r2">Comfortable</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="compact" id="r3" />
-                    <Label htmlFor="r3">Compact</Label>
-                  </div>
-                </RadioGroup>
-              </div>
-            </TabsContent>
+
             <TabsContent value="partnership">
-              <RegisterForm />
+              <Form {...form}>
+                <form className="w-2/3 space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="type"
+                    render={({ field }) => (
+                      <FormItem className="space-y-3">
+                        <FormLabel>Notify me about...</FormLabel>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex flex-col space-y-1"
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="all" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                All new messages
+                              </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="mentions" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                Direct messages and mentions
+                              </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="none" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                Nothing
+                              </FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit">Submit</Button>
+                </form>
+              </Form>
             </TabsContent>
             <TabsContent value="request">
-              <RegisterForm />
+              <div className="flex w-full items-center justify-center overflow-hidden rounded-[20px] shadow-2xl">
+                <form className="z-20 flex w-full flex-col rounded-[20px] border border-[#e8e8e8] p-7 font-sans text-black backdrop-blur-3xl">
+                  <div className="mb-[20px] flex flex-col gap-[10px]">
+                    <input
+                      type="number"
+                      className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
+                      id="passwordOld"
+                      placeholder="Цена за единицу"
+                      required
+                    />
+                    <input
+                      type="text"
+                      className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
+                      id="passwordNew"
+                      placeholder="Комментарий к заявке"
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className={`w-full max-w-[150px] rounded-md bg-black py-1 text-white`}
+                  >
+                    Отправить заявку
+                  </Button>
+                </form>
+              </div>
             </TabsContent>
           </Tabs>
         </div>

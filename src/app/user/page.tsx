@@ -61,7 +61,7 @@ import { Input } from "@/components/ui/input";
 export default function Home() {
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
-      <div className="flex w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
+      <div className="flex h-full w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
         <h2 className="text-center text-[24px] font-bold leading-[167%] text-black">
           тендеры и закупки
         </h2>
@@ -314,7 +314,37 @@ export default function Home() {
               </div>
             </TabsContent>
             <TabsContent value="partnership">
-              <RegisterForm />
+              <div className="flex w-full items-center justify-center overflow-hidden rounded-[20px] shadow-2xl">
+                <form className="z-20 flex w-full flex-col rounded-[20px] border border-[#e8e8e8] px-5 py-3 font-sans text-black backdrop-blur-3xl">
+                  <div className="mb-5">
+                    <h1 className="text-center text-2xl">Смените пароль</h1>
+                  </div>
+
+                  <div className="mb-[20px] flex flex-col gap-[10px]">
+                    <input
+                      type="text"
+                      className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
+                      id="passwordOld"
+                      placeholder="Введите страый пароль"
+                      required
+                    />
+                    <input
+                      type="text"
+                      className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
+                      id="passwordNew"
+                      placeholder="Введите новый пароль"
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className={`mb-7 w-full max-w-[150px] rounded-md bg-black py-1 text-white`}
+                  >
+                    Сменить
+                  </Button>
+                </form>
+              </div>
             </TabsContent>
           </Tabs>
         </div>

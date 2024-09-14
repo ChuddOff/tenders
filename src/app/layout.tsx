@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${comfortaa.variable} ${inter.variable} color-scheme: light`}
     >
-      <body className="overflow-x-hidden">
+      <body className="overflow-x-hidden pb-[50px]">
         <TRPCReactProvider>
           <ThemeProvider
             attribute="class"

@@ -1,21 +1,5 @@
 "use client";
-
-import Link from "next/link";
-import { SlArrowDown } from "react-icons/sl";
-import {
-  FaAccessibleIcon,
-  FaHandshakeSimple,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
-import { FaMoneyCheck } from "react-icons/fa";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
-
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import { RiFolderChart2Line } from "react-icons/ri";
@@ -41,6 +25,25 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { TrendingUp } from "lucide-react";
+import {
+  FaAccessibleIcon,
+  FaRegFileLines,
+  FaRegHandshake,
+  FaSearchengin,
+  FaStar,
+} from "react-icons/fa6";
+import { GoGitPullRequest } from "react-icons/go";
+import { FaCommentAlt, FaSortAmountDown } from "react-icons/fa";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -76,7 +79,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default async function Home() {
+export default function Home() {
+  const [sortMax, setSortMax] = React.useState(true);
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
       <div className="flex h-full w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
@@ -207,68 +211,39 @@ export default async function Home() {
         </div>
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
-        <h1 className="text-[34px] font-bold text-black">
-          Тендеры по категориям
-        </h1>
-        <h2 className="max-w-[418px] text-[18px] font-semibold text-black">
-          Раздел «Тендеры по категориям» работает на основе анализа текстов
-          лотов и не может гарантировать точное соответствие категории и
-          найденных лотов.
+        <h1 className="text-[34px] font-bold text-black">Партнерство</h1>
+        <h2 className="w-full text-[18px] font-semibold text-black">
+          Вы можете оставить предложение о партнерстве в любом лоте. Для этого
+          откройте нужный лот, перейдите во вкладку партнерство и оставьте свое
+          предложение.
         </h2>
+        <div className="flex w-full items-center justify-between">
+          <p>В каталоге 69 лотов. Показаны 1-20</p>
+          <div className="flex items-center gap-[15px]">
+            <p>Сортировать по:</p>
+            <Select defaultValue="sum">
+              <SelectTrigger className="h-[40px] w-[140px]">
+                <SelectValue placeholder="Select a fruit" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="sum">Сумма</SelectItem>
+                  <SelectItem value="up">Опубликован</SelectItem>
+                  <SelectItem value="end">Завершение</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <FaSortAmountDown
+              style={{ transform: `rotate(${sortMax ? 0 : 180}deg)` }}
+              onClick={() => setSortMax(!sortMax)}
+            />
+          </div>
+        </div>
         <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array(5)
-            .fill(null)
-            .map((_, index) => (
-              <li
-                className="flex w-full max-w-[400px] items-center justify-between"
-                key={index}
-              >
-                <div className="flex items-center gap-[10px]">
-                  <div className="h-[10px] w-[10px] rounded-full bg-greenl" />
-                  <p className="text-[18px] font-normal text-black">
-                    Абайская область
-                  </p>
-                </div>
-
-                <p className="text-[18px] font-normal text-black">3548</p>
-              </li>
-            ))}
+          {Array.from({ length: 101 }).map((_, i) => (
+            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
+          ))}
         </ul>
-        <Card>
-          <CardHeader>
-            <CardTitle>Bar Chart - Mixed</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={chartConfig}>
-              <BarChart
-                accessibilityLayer
-                data={chartData}
-                layout="vertical"
-                margin={{
-                  left: 0,
-                }}
-              >
-                <YAxis
-                  dataKey="browser"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) =>
-                    chartConfig[value as keyof typeof chartConfig]?.label
-                  }
-                />
-                <XAxis dataKey="visitors" type="number" hide />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent hideLabel />}
-                />
-                <Bar dataKey="visitors" layout="vertical" radius={5} />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
       </div>
     </main>
   );

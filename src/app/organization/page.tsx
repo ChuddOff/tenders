@@ -1,25 +1,13 @@
 "use client";
-
-import Link from "next/link";
-import { SlArrowDown } from "react-icons/sl";
-import {
-  FaAccessibleIcon,
-  FaHandshakeSimple,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
-import { FaMoneyCheck } from "react-icons/fa";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
-
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import { RiFolderChart2Line } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
+import {
+  MdOutlineManageSearch,
+  MdOutlineSendTimeExtension,
+  MdScheduleSend,
+} from "react-icons/md";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
@@ -41,6 +29,26 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { TrendingUp } from "lucide-react";
+import {
+  FaAccessibleIcon,
+  FaRegFileLines,
+  FaRegHandshake,
+  FaSearchengin,
+  FaStar,
+} from "react-icons/fa6";
+import { GoGitPullRequest } from "react-icons/go";
+import { FaCommentAlt, FaSortAmountDown } from "react-icons/fa";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
+import { IoMdSearch } from "react-icons/io";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -76,7 +84,8 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default async function Home() {
+export default function Home() {
+  const [sortMax, setSortMax] = React.useState(true);
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
       <div className="flex h-full w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
@@ -208,67 +217,31 @@ export default async function Home() {
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">
-          Тендеры по категориям
+          Контрагенты Казахстана
         </h1>
-        <h2 className="max-w-[418px] text-[18px] font-semibold text-black">
-          Раздел «Тендеры по категориям» работает на основе анализа текстов
-          лотов и не может гарантировать точное соответствие категории и
-          найденных лотов.
+        <h2 className="max-w-[518px] text-[18px] font-semibold text-black">
+          В каталоге 1 014 948 контрагентов. Показаны 1-20
         </h2>
+        <div className="flex w-full items-center justify-center">
+          <div className="flex items-center gap-[12px] max-[570px]:hidden">
+            <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
+              <input
+                type="text"
+                placeholder="Поиск по названию"
+                className="cursor-text font-normal text-[#000000] focus:border-none focus:outline-none"
+              />
+              <MdOutlineManageSearch size={25} className="text-main" />
+            </div>
+            <div className="flex items-center justify-center rounded-[100%] bg-main p-3">
+              <IoMdSearch className="text-white" />
+            </div>
+          </div>
+        </div>
         <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array(5)
-            .fill(null)
-            .map((_, index) => (
-              <li
-                className="flex w-full max-w-[400px] items-center justify-between"
-                key={index}
-              >
-                <div className="flex items-center gap-[10px]">
-                  <div className="h-[10px] w-[10px] rounded-full bg-greenl" />
-                  <p className="text-[18px] font-normal text-black">
-                    Абайская область
-                  </p>
-                </div>
-
-                <p className="text-[18px] font-normal text-black">3548</p>
-              </li>
-            ))}
+          {Array.from({ length: 101 }).map((_, i) => (
+            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
+          ))}
         </ul>
-        <Card>
-          <CardHeader>
-            <CardTitle>Bar Chart - Mixed</CardTitle>
-            <CardDescription>January - June 2024</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={chartConfig}>
-              <BarChart
-                accessibilityLayer
-                data={chartData}
-                layout="vertical"
-                margin={{
-                  left: 0,
-                }}
-              >
-                <YAxis
-                  dataKey="browser"
-                  type="category"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) =>
-                    chartConfig[value as keyof typeof chartConfig]?.label
-                  }
-                />
-                <XAxis dataKey="visitors" type="number" hide />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent hideLabel />}
-                />
-                <Bar dataKey="visitors" layout="vertical" radius={5} />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
       </div>
     </main>
   );

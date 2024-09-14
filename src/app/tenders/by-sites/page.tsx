@@ -80,7 +80,7 @@ const chartConfig = {
 export default function Home() {
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
-      <div className="flex w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
+      <div className="flex h-full w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
         <h2 className="text-center text-[24px] font-bold leading-[167%] text-black">
           тендеры и закупки
         </h2>
