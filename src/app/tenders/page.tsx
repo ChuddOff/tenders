@@ -11,42 +11,21 @@ import {
   FaSearchengin,
   FaStar,
 } from "react-icons/fa6";
-import { FaMoneyCheck } from "react-icons/fa";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
-
 import { GoGitPullRequest } from "react-icons/go";
 import { FaCommentAlt } from "react-icons/fa";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import {
   RiArrowDownSFill,
-  RiArrowDropDownLine,
   RiFolderChart2Line,
 } from "react-icons/ri";
 import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Bar, BarChart, Label, XAxis, YAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Label } from "recharts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LoginForm from "../_components/auth/LoginForm";
 import RegisterForm from "../_components/auth/RegisterForm";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import {
