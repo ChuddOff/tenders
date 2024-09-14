@@ -2,6 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
+.tiptap {
+  font-size: 18px;
+  word-break: break-word;
+  font-family: var(--font-comfortaa);
+
+  .empty-paragraph {
+    min-height: 1em;
+    width: 100%;
+  }
+
+  .is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    width: 500px
+  }
+
+  p {
+    line-height: 34px;
+  }
+
+  p:not(:first-child) {
+    margin-top: 2rem;
+  }
+
+  pre {
+    font-family: "JetBrainsMono", monospace;
+    margin: 15px 0;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    line-height: 1.2rem;
+
+    code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      line-height: 28px;
+      font-size: 15px;
+      text-wrap: wrap;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid gray;
+    margin: 2rem 0 2rem 1rem;
+    padding-left: 1rem;
+  }
+
+  mark {
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: inherit;
+  }
+
+  li {
+    margin: 1rem 0;
+  }
+
+  ul,
+  ol {
+    padding: 1rem 1rem 0;
+    list-style: disc;
+  }
+}
+
+.tiptap:focus-visible {
+  outline: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

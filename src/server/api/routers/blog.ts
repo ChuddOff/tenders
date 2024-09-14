@@ -7,7 +7,6 @@ export const blogRouter = createTRPCRouter({
   getLatestPosts: publicProcedure
     .input(z.object({ limit: z.number(), cursor: z.number() }))
     .mutation(async ({ input, ctx }) => {
-      console.log(input.cursor, input.limit);
       const posts = await ctx.db.post.findMany({
         orderBy: {
           createdAt: "desc",
@@ -35,14 +34,12 @@ export const blogRouter = createTRPCRouter({
       return Math.ceil(postsCount / input.pagesLimit);
     }),
 
-  createPost: publicProcedure // TODO: replace it with protected procedure
-    .input(z.object({ title: z.string(), content: ContentValidator }))
-    .mutation(async ({ input, ctx }) => {
-      return await ctx.db.post.create({
-        data: {
-          title: input.title,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          content: input.content,
+  getPost: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input, ctx }) => {
+      return await ctx.db.post.findUnique({
+        where: {
+          id: input.id,
         },
       });
     }),

@@ -27,8 +27,14 @@ export default function Blog() {
       </div>
 
       {isNoPostFinded && <p className="text-center">Постов не найдено</p>}
-      <div className="grid grid-cols-2 gap-8 border-black max-md:grid-cols-1">
-        {blogs.isPending ? (
+      <div className="grid grid-cols-2 justify-end gap-8 border-black max-md:grid-cols-1">
+        {!blogs.isPending ? (
+          <>
+            {blogs.data?.posts.map((page) => (
+              <BlogItem item={page} key={page.id} />
+            ))}
+          </>
+        ) : (
           <>
             {/* Skeleton */}
             {Array.from({ length: pagesLimit }).map((_, index) => (
@@ -44,12 +50,6 @@ export default function Blog() {
                   ))}
                 </div>
               </div>
-            ))}
-          </>
-        ) : (
-          <>
-            {blogs.data?.posts.map((page) => (
-              <BlogItem item={page} key={page.id} />
             ))}
           </>
         )}
