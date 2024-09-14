@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  width: 6px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .tiptap {
   font-size: 18px;
   word-break: break-word;
@@ -21,7 +43,6 @@
 
   img {
     margin: 10px auto 10px auto;
-    width: 500px
   }
 
   p {
@@ -76,6 +97,85 @@
 
 .tiptap:focus-visible {
   outline: none;
+}
+
+.light {
+  .tiptap {
+    color: #000000;
+
+    .is-editor-empty:first-child::before {
+      color: #262626;
+    }
+
+    mark {
+      background: #2d2d2d;
+      color: white
+    }
+
+    pre {
+      background: #2d2d2d;
+      color: #ececec;
+    }
+
+    blockquote {
+      color: gray;
+    }
+  }
+
+  .ag-root-wrapper {
+    background: transparent;
+    border: none;
+    .ag-header {
+      background: transparent;
+    }
+    .ag-row {
+      background: transparent;
+    }
+    .ag-picker-field-wrapper {
+      background: transparent;
+    }
+    .ag-popup {
+      background: transparent;
+      display: block;
+    }
+
+    .ag-rich-select-value {
+      background: transparent;
+    }
+  }
+}
+
+.dark {
+  .tiptap {
+    color: #ececec;
+
+    .is-editor-empty:first-child::before {
+      color: #ececec;
+    }
+
+    mark {
+      background: #2d2d2d;
+    }
+
+    pre {
+      background: #2d2d2d;
+    }
+
+    blockquote {
+      color: rgb(154, 154, 154);
+    }
+  }
+
+  .ag-root-wrapper {
+    background: transparent;
+    border: none;
+    .ag-header {
+      background: transparent;
+    }
+    .ag-row {
+      background: transparent;
+    }
+  }
 }
 
 @layer base {

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import imageSample from "@/images/Image.png";
 import Link from "next/link";
 import type { Post } from "@prisma/client";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -13,7 +11,7 @@ export default function BlogItem({ item }: Props) {
   return (
     <Link
       href={`blog/${item.id}`}
-      className="flex w-full flex-col items-center justify-end pb-7"
+      className="flex w-full flex-col items-center justify-end pb-7 animate"
     >
       <p className="text- mb-4 max-w-[500px] font-comfortaa text-xl font-medium hover:underline max-lg:text-base break-all">
         {shortString(item.title, 35)}

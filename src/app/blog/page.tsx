@@ -39,7 +39,7 @@ export default function Blog() {
             {/* Skeleton */}
             {Array.from({ length: pagesLimit }).map((_, index) => (
               <div
-                className="mx-auto flex max-h-[320px] w-full flex-col items-center pb-7"
+                className="mx-auto flex max-h-[320px] max-w-[500px] w-full flex-col items-center pb-7"
                 key={index}
               >
                 <Skeleton className="mb-4 h-6 w-full" />
