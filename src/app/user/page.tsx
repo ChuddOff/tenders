@@ -1,5 +1,6 @@
 "use client";
 
+import avatar from "@/images/ava.jpg";
 import Link from "next/link";
 import { SlArrowDown } from "react-icons/sl";
 import {
@@ -24,7 +25,11 @@ import {
   RiArrowDropDownLine,
   RiFolderChart2Line,
 } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
+import {
+  MdOutlineManageSearch,
+  MdOutlineSendTimeExtension,
+  MdScheduleSend,
+} from "react-icons/md";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
@@ -50,6 +55,8 @@ import LoginForm from "../_components/auth/LoginForm";
 import RegisterForm from "../_components/auth/RegisterForm";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
   return (
@@ -182,160 +189,103 @@ export default function Home() {
         </div>
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
-        <h1 className="text-[34px] font-bold text-black">
-          Работы по строительству тендеров
+        <h1 className="mx-auto text-[34px] font-bold text-black">
+          Личный кабинет
         </h1>
-        <div className="flex w-full flex-col justify-between gap-[20px] rounded-[20px] bg-[#fbfbfb]">
-          <div className="flex w-full justify-between rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
-            <div className="flex w-full gap-[30px]">
-              <div className="flex gap-[15px]">
-                <FaStar />
-                <a href="#" className="text-xs text-black">
-                  Избранные
-                </a>
-              </div>
-              <div className="flex gap-[15px]">
-                <IoFolderOutline />
-                <a href="#" className="text-xs text-black">
-                  Переместить в
-                </a>
-              </div>
-              <div className="flex gap-[15px]">
-                <BsPinAngleFill />
-                <a href="#" className="text-xs text-black">
-                  Заметка
-                </a>
-              </div>
-              <div className="flex gap-[15px]">
-                <TbEyeCheck />
-                <a href="#" className="text-xs text-black">
-                  Отслеживать
-                </a>
-              </div>
-            </div>
-            <div className="flex gap-[15px]">
-              <div className="flex gap-[15px]">
-                <FaRegCircle />
-                <a href="#" className="text-xs text-black">
-                  Отслеживать
-                </a>
-              </div>
-              <BiHide />
-            </div>
-          </div>
-          <div className="flex w-full items-start items-center justify-start justify-around gap-[20px] px-[20px] pb-[20px]">
-            <div className="flex flex-col items-center gap-[10px]">
-              <h3>До окончания:</h3>
-              <div className="flex h-[150px] w-[150px] flex-wrap items-center justify-center rounded-[20px] bg-[rgba(217,217,217,0.41)]">
-                <p className="flex h-[75px] w-[75px] items-center justify-center text-[24px] font-bold text-black">
-                  14д
-                </p>
-                <p className="flex h-[75px] w-[75px] items-center justify-center text-[24px] font-bold text-black">
-                  14ч
-                </p>
-                <p className="flex h-[75px] w-[75px] items-center justify-center text-[24px] font-bold text-black">
-                  14м
-                </p>
-                <p className="flex h-[75px] w-[75px] items-center justify-center text-[24px] font-bold text-black">
-                  14с
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-[20px]">
-              <p>Опубликовано: 12.12.2022</p>
-              <p>Начало подачи: 12.12.2022</p>
-              <p>Завершение: 12.12.2022</p>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-[10px]">
-              <p>Заплание </p>
-              <div className="flex items-center gap-[10px]">
-                <p>₸ 27 185 954 330</p>
-                <RiArrowDownSFill />
-              </div>
-              <p className="">Статус: Приём заявок</p>
-            </div>
-          </div>
-        </div>
-        <div className="flex w-full justify-center gap-[50px]">
-          <div className="flex flex-col items-center gap-[10px]">
-            <h3 className="font-medium text-black">Цена за единицу</h3>
-            <p>₸ 27 185 954 330</p>
-          </div>
-          <div className="h-full w-[2px] bg-main" />
-          <div className="flex flex-col items-center gap-[10px]">
-            <h3 className="font-medium text-black">Единица измерения</h3>
-            <p>Работа</p>
-          </div>
-          <div className="h-full w-[2px] bg-main" />
-          <div className="flex flex-col items-center gap-[10px]">
-            <h3 className="font-medium text-black">Количество</h3>
-            <p>1</p>
-          </div>
-          <div className="h-full w-[2px] bg-main" />
-          <div className="flex flex-col items-center gap-[10px]">
-            <h3 className="font-medium text-black">Аванс</h3>
-            <p>30%</p>
-          </div>
-        </div>
         <div className="mt-2 flex w-full items-center justify-center px-2">
-          <Tabs defaultValue="login" className="w-full">
-            <TabsList className="w-full">
-              <TabsTrigger value="info" className="w-full">
-                Информация по лоту
+          <Tabs defaultValue="login" className="w-full" defaultValue={"info"}>
+            <TabsList
+              className="w-full text-base font-bold"
+              defaultValue={"info"}
+            >
+              <TabsTrigger value="info" className="w-full text-base font-bold">
+                Профиль
               </TabsTrigger>
-              <TabsTrigger value="comments" className="w-full">
-                Комментарии
+              <TabsTrigger
+                value="comments"
+                className="w-full text-base font-bold"
+              >
+                Сотрудники
               </TabsTrigger>
-              <TabsTrigger value="partnership" className="w-full">
-                Партнерство (3)
-              </TabsTrigger>
-              <TabsTrigger value="request" className="w-full">
-                Подача заявки
+              <TabsTrigger
+                value="partnership"
+                className="w-full text-base font-bold"
+              >
+                Безопасность
               </TabsTrigger>
             </TabsList>
             <TabsContent
               value="info"
               className="mt-[20px] flex flex-col gap-[20px]"
+              defaultChecked
             >
-              <div className="flex justify-between gap-[10px]">
-                <p>Объявление:</p>
-                <p>Требуется платная подписка</p>
+              <h2 className="text-sm font-medium">
+                Просим вводить только достоверные данные своей компании,
+                корректные номера телефонов по которым наша команда будет
+                выходить с Вами на связь. Спасибо!
+              </h2>
+              <div className="mt-[50px] flex items-center justify-evenly gap-[15px]">
+                <div className="flex flex-col items-center gap-[15px]">
+                  <Image
+                    src={avatar}
+                    alt="avatar"
+                    className="h-[150px] w-[150px] rounded-full"
+                  />
+                  <div className="grid w-full max-w-sm items-center gap-1.5">
+                    <Label htmlFor="picture">Picture</Label>
+                    <Input id="picture" type="file" />
+                  </div>
+                </div>
+                <div className="flex max-w-[500px] flex-col gap-[15px]">
+                  <div className="flex justify-between gap-[10px]">
+                    <p>Контактное лицо:</p>
+                    <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
+                      <input
+                        type="text"
+                        placeholder="Поиск по названию"
+                        className="cursor-text font-normal text-[#000000] focus:border-none focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-between gap-[10px]">
+                    <p>Мобильный телефон:</p>
+                    <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
+                      <input
+                        type="text"
+                        placeholder="Поиск по названию"
+                        className="cursor-textfont-normal text-[#000000] focus:border-none focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex justify-between gap-[10px]">
+                    <p>Email:</p>
+                    <div className="flex items-center justify-between border-b-[1px] border-main px-[12px] py-[8px]">
+                      <input
+                        type="text"
+                        placeholder="Поиск по названию"
+                        className="cursor-text font-normal text-[#000000] focus:border-none focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>№ Лота:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Тип закупки:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Способ проведения:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Пункт плана:</p>
-                <p>Перейти к плану</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Источник:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Организатор:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Место поставки:</p>
-                <p>Акмолинская область, Целиноградский район, с.Коянды </p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Описание лота:</p>
-                <p>Требуется платная подписка</p>
-              </div>
-              <div className="flex justify-between gap-[10px]">
-                <p>Код ТРУ:</p>
-                <p>*22123.200.000005</p>
+              <button className="m-auto mt-[15px] flex h-[60px] w-full max-w-[367px] items-center justify-center rounded-lg bg-main p-[18px_40px] text-white">
+                Сохранить изменения
+              </button>
+              <div className="mt-[15px] flex flex-col gap-[15px]">
+                <h2 className="text-[34px] font-bold text-black">
+                  Мои компании (1)
+                </h2>
+                <div className="flex max-w-[300px] flex-col gap-[30px] rounded-[8px] bg-[#f9f9f9] p-[20px]">
+                  <h3 className="text-[20px] font-bold text-black">
+                    ИП The developer
+                  </h3>
+                  <div className="flex flex-col gap-[10px] text-sm font-medium">
+                    <p>Роль: Владелец</p>
+                    <p>Телефон: +7 (999) 999-99-99</p>
+                    <p>Статус: Email не подтвержден</p>
+                  </div>
+                </div>
               </div>
             </TabsContent>
             <TabsContent
@@ -364,9 +314,6 @@ export default function Home() {
               </div>
             </TabsContent>
             <TabsContent value="partnership">
-              <RegisterForm />
-            </TabsContent>
-            <TabsContent value="request">
               <RegisterForm />
             </TabsContent>
           </Tabs>

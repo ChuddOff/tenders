@@ -17,7 +17,7 @@ export default function Header() {
           <input
             type="text"
             placeholder="Поиск по названию"
-            className="cursor-text rounded-[12px] font-normal text-[#000000] focus:border-none focus:outline-none"
+            className="cursor-text font-normal text-[#000000] focus:border-none focus:outline-none"
           />
           <MdOutlineManageSearch size={25} className="text-main" />
         </div>
