@@ -172,7 +172,7 @@ const components: NavbarComponent[] = [
       },
       {
         title: "Блог",
-        href: "/tenders/by-categories",
+        href: "/blog",
         description: "Все тендера по категориям",
       },
       {
@@ -208,7 +208,7 @@ export default function Navingation() {
   return (
     <div className="flex w-full justify-center">
       <NavigationMenu>
-        <NavigationMenuList>
+        <NavigationMenuList className=" flex-wrap">
           {components.map((component) => (
             <NavigationMenuItem key={component.trigger}>
               <NavigationMenuTrigger>{component.trigger}</NavigationMenuTrigger>

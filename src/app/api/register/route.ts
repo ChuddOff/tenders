@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { RegisterSchema } from "@/validators/zod";
-import type { registerPayload } from "@/utils/auth";
+import type { registerPayload } from "@/lib/auth";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function POST(req: NextRequest) {
