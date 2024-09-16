@@ -17,6 +17,7 @@ import Spinner from "@/components/ui/spinner";
 
 export default function Tiptap() {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       CharacterCount,
       StarterKit,
@@ -25,7 +26,6 @@ export default function Tiptap() {
       Placeholder.configure({ placeholder: "Tell your story" }),
     ],
   });
-  const [title, setTitle] = useState("");
 
   if (!editor) {
     return (
@@ -36,17 +36,9 @@ export default function Tiptap() {
   }
 
   return (
-    <div className=" max-w-[1080px] mx-auto">
+    <div className="mx-auto max-w-[1080px]">
       <Toolbar editor={editor} />
-      <input
-        onChange={(e) => setTitle(e.target.value)}
-        value={title.trimStart()}
-        color="secondary"
-        maxLength={100}
-        placeholder="Title"
-        className="light light:text-defaultLight light:placeholder:text-defaultLight dark:text-defaultDark dark:placeholder:text-defaultDark mb-1 w-full bg-transparent py-3 font-comfortaa text-[36px] outline-none"
-      />
-      <div className="light mb-10 rounded-3xl font-comfortaa">
+      <div className="mb-10 rounded-3xl font-comfortaa">
         <EditorContent editor={editor} />
       </div>
     </div>

@@ -62,6 +62,9 @@ export async function POST(req: NextRequest) {
       name: body.username,
       email: body.email,
       password: hashedPassword,
+      companyName: body.companyName,
+      stationaryNumber: body.stationaryNumber,
+      mobileNumber: body.mobileNumber,
     },
   });
 

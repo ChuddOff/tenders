@@ -4,16 +4,16 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { shortString } from "@/lib/utils";
 
 interface Props {
-  item: Post
+  item: Post;
 }
 
 export default function BlogItem({ item }: Props) {
   return (
     <Link
       href={`blog/${item.id}`}
-      className="flex w-full flex-col items-center justify-end pb-7 animate"
+      className="animate flex w-full flex-col items-center justify-end pb-7"
     >
-      <p className="text- mb-4 max-w-[500px] font-comfortaa text-xl font-medium hover:underline max-lg:text-base break-all">
+      <p className="text- mb-4 max-w-[500px] break-all font-comfortaa text-xl font-medium hover:underline max-lg:text-base">
         {shortString(item.title, 35)}
       </p>
       <AspectRatio
@@ -27,7 +27,7 @@ export default function BlogItem({ item }: Props) {
         />
       </AspectRatio>
 
-      <p className="mb-2 max-w-[500px] font-inter text-[#303030] max-lg:text-sm">
+      <p className="mb-2 max-w-[500px] break-all font-inter text-[#303030] max-lg:text-sm">
         {shortString(item.smallDesc, 65)}
       </p>
     </Link>

@@ -1,12 +1,16 @@
 import Image from "next/image";
 import React from "react";
-import { MdOutlineManageSearch } from "react-icons/md";
+import { MdCreate, MdOutlineManageSearch } from "react-icons/md";
 import avatar from "@/images/ava.jpg";
 import { IoMdSearch } from "react-icons/io";
 import Link from "next/link";
 import { DarkMode } from "../darkMode";
+import { getServerAuthSession } from "@/server/auth";
+import { Button } from "@/components/ui/button";
 
-export default function Header() {
+export default async function Header() {
+  const session = await getServerAuthSession();
+
   return (
     <header className="mx-auto mb-6 mt-3 flex items-center justify-between">
       <Link href="/" className="text-3xl font-bold text-main">
@@ -25,8 +29,15 @@ export default function Header() {
           <IoMdSearch className="text-white" />
         </div>
       </div>
-      <div className="flex gap-[30px]">
+      <div className="flex items-center gap-5">
         <DarkMode />
+        {session?.user.role === "ADMIN" && (
+          <Link href="/write">
+            <Button variant={"outline"} size={"icon"}>
+              <MdCreate />
+            </Button>
+          </Link>
+        )}
         <Image src={avatar} alt="avatar" className="h-9 w-9 rounded-full" />
       </div>
     </header>

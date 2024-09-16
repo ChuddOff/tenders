@@ -8,16 +8,19 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
+  const pagesLimit = 5;
 
-  const blogs = api.blog.getLatestPosts.useMutation();
+  const utils = api.useUtils();
+
+  const blogs = api.blog.getLatestPosts.useQuery({
+    cursor: currentPage,
+    limit: pagesLimit,
+  });
 
   const isNoPostFinded = !blogs.isPending && blogs.data?.posts.length === 0;
 
-  const pagesLimit = 5;
-
   useEffect(() => {
-    blogs.mutate({ limit: pagesLimit, cursor: currentPage });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    utils.blog.getLatestPosts.fetch({ cursor: currentPage, limit: pagesLimit });
   }, [currentPage]);
 
   return (
@@ -39,7 +42,7 @@ export default function Blog() {
             {/* Skeleton */}
             {Array.from({ length: pagesLimit }).map((_, index) => (
               <div
-                className="mx-auto flex max-h-[320px] max-w-[500px] w-full flex-col items-center pb-7"
+                className="mx-auto flex max-h-[320px] w-full max-w-[500px] flex-col items-center pb-7"
                 key={index}
               >
                 <Skeleton className="mb-4 h-6 w-full" />
@@ -58,7 +61,7 @@ export default function Blog() {
       <Pagination
         pagesLimit={pagesLimit}
         currentPage={currentPage}
-        isFetching={blogs.isIdle || isNoPostFinded}
+        isFetching={isNoPostFinded}
         onClick={(page: number) => setCurrentPage(page)}
         onNextPageClick={() => setCurrentPage(currentPage + 1)}
         onPrevPageClick={() => setCurrentPage(currentPage - 1)}

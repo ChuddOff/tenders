@@ -11,13 +11,14 @@ import { useRef, useState, type ChangeEvent } from "react";
 
 // tiptap types
 import type { Editor } from "@tiptap/react";
+import { PublishModal } from "./PublishModal";
 
 interface ToolbarProps {
   editor: Editor | null;
 }
 
 export default function Toolbar({ editor }: ToolbarProps) {
-    const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!editor) {
     return null;
@@ -28,11 +29,14 @@ export default function Toolbar({ editor }: ToolbarProps) {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "ml_default");
+      formData.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string,
+      );
 
       try {
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/dzb0pjvd0/upload`,
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
           {
             method: "POST",
             body: formData,
@@ -57,25 +61,25 @@ export default function Toolbar({ editor }: ToolbarProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => editor.chain().focus().toggleBold().run()}
-              className={`light light:bg-lightButton dark:bg-darkButton rounded-md px-3 py-1`}
+              className={`px-3 py-1`}
             >
               <MdOutlineFormatBold size={20} />
             </button>
             <button
               onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-              className={`light light:bg-lightButton dark:bg-darkButton rounded-md px-3 py-1`}
+              className={`px-3 py-1`}
             >
               <LuCode2 size={20} />
             </button>
             <button
               onClick={() => editor.chain().focus().toggleBlockquote().run()}
-              className={`light light:bg-lightButton dark:bg-darkButton rounded-md px-3 py-1`}
+              className={`px-3 py-1`}
             >
               <FaQuoteLeft size={20} />
             </button>
             <button
               onClick={() => editor.chain().focus().toggleHighlight().run()}
-              className={`light light:bg-lightButton dark:bg-darkButton rounded-md px-3 py-1`}
+              className={`px-3 py-1`}
             >
               <LuHighlighter size={20} />
             </button>
@@ -98,7 +102,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
 
           <div className="mx-auto flex items-center gap-2">
             <button
-              className={`light light:bg-lightButton dark:bg-darkButton rounded-md px-3 py-1`}
+              className={`px-3 py-1`}
               onClick={() => fileInputRef.current?.click()}
             >
               Upload Image
@@ -127,6 +131,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
             </button>
           </div>
         </div>
+        <PublishModal editor={editor} />
       </div>
       <div className="flex gap-2">
         <input
