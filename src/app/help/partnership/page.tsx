@@ -44,6 +44,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
+import { Separator } from "@radix-ui/react-dropdown-menu";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -212,38 +213,64 @@ export default function Home() {
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">Партнерство</h1>
-        <h2 className="w-full text-[18px] font-semibold text-black">
-          Вы можете оставить предложение о партнерстве в любом лоте. Для этoго
-          откройте нужный лот, перейдите во вкладку партнерство и оставьте свое
-          предложение.
+        <h2>
+          С помощью функции Партнерство вы можете найти или предложить
+          финансирование, а также найти или предложить товары (работы, услуги)
+          для участия в тендере. <br />
+          <span className="h-[50px] w-full text-[22px] font-semibold leading-[50px] text-black">
+            Как найти партнера?
+          </span>{" "}
+          <br />
+          Откройте нужный лот и перейдите во вкладку Партнерство, чтобы оставить
+          заявку на поиск партнера. <br />
+          Выберите вид партнерства, который вам необходим, заполните контактную
+          информацию и подайте заявку. Доступны следующие виды:{" "}
         </h2>
-        <div className="flex w-full items-center justify-between">
-          <p>В каталоге 69 лотов. Показаны 1-20</p>
-          <div className="flex items-center gap-[15px]">
-            <p>Сортировать по:</p>
-            <Select defaultValue="sum">
-              <SelectTrigger className="h-[40px] w-[140px]">
-                <SelectValue placeholder="Select a fruit" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="sum">Сумма</SelectItem>
-                  <SelectItem value="up">Опубликован</SelectItem>
-                  <SelectItem value="end">Завершение</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <FaSortAmountDown
-              style={{ transform: `rotate(${sortMax ? 0 : 180}deg)` }}
-              onClick={() => setSortMax(!sortMax)}
-            />
-          </div>
-        </div>
-        <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array.from({ length: 101 }).map((_, i) => (
-            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
-          ))}
+        <ul className="list-inside list-disc text-[18px] font-normal leading-[50px] marker:text-black">
+          <li>Участвую, необходимо финансирование</li>
+          <li>Участвую, нужен производитель/поставщик услуг </li>
+          <li>Не участвую, предоставлю финансирование</li>
+          <li>Не участвую, могу поставить товар/оказать услуги</li>
         </ul>
+
+        <h2>
+          Ваше предложение будет доступно всем пользователям TenderPlus. А на
+          вкладке Партнерство появится индикатор, который покажет сколько
+          партнерских предложений есть в лоте на текущий момент. Также вы
+          сможете увидеть сколько раз просматривали контактную информацию.{" "}
+          <br />
+          <span className="h-[50px] w-full text-[22px] font-semibold leading-[50px] text-black">
+            Как посмотреть текущие предложения на партнерство?
+          </span>{" "}
+          <br />
+          Чтобы просмотреть все текущие партнерские предложения, перейдите в
+          соответствующий раздел сайта через главное меню. Вы увидите перечень
+          лотов с партнерскими предложениями, а также их количество для каждого
+          лота. <br />
+          Если вас интересуют только определенные виды партнерских предложений,
+          нажмите Уточнить поиск, выберите необходимые и нажмите кнопку Искать.{" "}
+          <br />
+          Например, вы не участвуете в тендере, но готовы профинансировать —
+          найдите все предложения, в которых требуется финансирование. <br />
+          <span className="h-[50px] w-full text-[22px] font-semibold leading-[50px] text-black">
+            Дополнительная информация — Потенциальные партнеры
+          </span>{" "}
+          <br />
+          На странице лота во вкладке Партнерство также можно найти
+          дополнительную полезную информацию в разделе Потенциальные партнеры:
+          контакты компаний, которые уже заключали договоры по аналогичным
+          лотам. <br />
+          По умолчанию в поиске выбраны все регионы и показаны договоры за
+          последние 12 месяцев. Но вы можете воспользоваться фильтром и
+          посмотреть компании в нужных вам регионах. <br />
+          Информация по потенциальным партнерам доступна только после оформления
+          одного из тарифов. <br />
+          Нажмите кнопку Связаться, чтобы посмотреть контакты поставщика.
+        </h2>
+        <Separator className="w-full" />
+        <h2>
+          Все инструкции по работе с сайтом находятся в разделе Помощь по сайту.
+        </h2>
       </div>
     </main>
   );
