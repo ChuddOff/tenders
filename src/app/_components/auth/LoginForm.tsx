@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  type RegisterOptions,
-  useForm,
-  type SubmitHandler,
-} from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { type loginPayload } from "../../../lib/auth";
 import { signIn } from "next-auth/react";
 import ErrorMessage from "./ErrorMessage";
@@ -12,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Spinner from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "@/validators/zod";
 
 export default function LoginForm() {
   const {
@@ -19,7 +17,7 @@ export default function LoginForm() {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<loginPayload>();
+  } = useForm<loginPayload>({ resolver: zodResolver(LoginSchema) });
   const [isPending, setIsPending] = useState(false);
   const [authError, setAuthError] = useState("");
   const router = useRouter();
@@ -47,31 +45,18 @@ export default function LoginForm() {
     label: string;
     type: string;
     placeholder: string;
-    validators?: RegisterOptions<loginPayload, keyof loginPayload>;
   }[] = [
     {
       name: "email",
       label: "Email",
       type: "text",
       placeholder: "Email",
-      validators: {
-        required: {
-          value: true,
-          message: "Email не может быть пустым",
-        },
-      },
     },
     {
       name: "password",
       label: "Пороль",
       type: "password",
       placeholder: "Password",
-      validators: {
-        required: {
-          value: true,
-          message: "Password не может быть пустым",
-        },
-      },
     },
   ];
 
@@ -98,9 +83,7 @@ export default function LoginForm() {
                   )}
                 </p>
                 <input
-                  {...register(input.name, {
-                    ...input.validators,
-                  })}
+                  {...register(input.name)}
                   type={input.type}
                   className="w-full rounded-md border bg-transparent px-2 py-2 outline-none placeholder:text-[#a4a4a4]"
                   id={input.name}

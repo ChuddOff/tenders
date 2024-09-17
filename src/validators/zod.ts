@@ -1,5 +1,6 @@
 import { ZodError, z } from "zod";
 import type { JSONContent } from "@tiptap/react";
+import validator from "validator";
 
 export const ContentValidator = z.custom<JSONContent>((val: JSONContent) => {
   let paragraphsWithContent = 0;
@@ -34,14 +35,14 @@ export const ContentValidator = z.custom<JSONContent>((val: JSONContent) => {
       {
         message: "Неправильный формат контента",
         code: "custom",
-        path: [""],
+        path: ["content"],
       },
     ]);
   }
 });
 
 export const LoginSchema = z.object({
-  email: z.string().email().min(1, { message: "Email не может быть пустым" }),
+  email: z.string().email("Неверный email").min(1, { message: "Email не может быть пустым" }),
   password: z.string().min(1, { message: "Пароль не может быть пустым" }),
 });
 
@@ -56,14 +57,10 @@ export const RegisterSchema = z.object({
     .min(1, { message: "Название компании не может быть пустым" }),
   stationaryNumber: z
     .string()
-    .min(1, { message: "Стационарный номер не может быть пустым" })
-    .max(12, {
-      message: "Стационарный номер не может быть больше 10 символов",
-    }),
+    .refine(validator.isMobilePhone, "Неверный стационарный номер телефона"),
   mobileNumber: z
     .string()
-    .min(1, { message: "Мобильный номер не может быть пустым" })
-    .max(12, { message: "Мобильный номер не может быть больше 10 символов" }),
+    .refine(validator.isMobilePhone, "Неверный мобильный номер телефона"),
 });
 
 export const createPostSchema = z.object({
