@@ -153,7 +153,7 @@ export default function Blog() {
 
                 </h1>
             </div>
-                <div className={"flex flex-col"}>
+                <div className={"flex flex-col w-1/3"}>                                                                   {/*ТУТ ОШИБКАААААААААААААААААААААААААААААААААААААААААААААААААААААААААААА ТАИЙЛВИНД ДЕРЬМООООООООООООООООООО*/}
                     <Accordion type="single" collapsible className="w-full">
                         {accordionData.map((item, index) => (
                             <RecursiveAccordionItem key={index} item={item} index={index} />
