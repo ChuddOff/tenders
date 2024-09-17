@@ -58,15 +58,18 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    role          Role      @default(USER)
-    emailVerified DateTime?
-    password      String
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+    id                String    @id @default(cuid())
+    name              String
+    email             String   @unique
+    role              Role      @default(USER)
+    emailVerified     DateTime?
+    password          String
+    image             String?
+    companyName       String
+    stationaryNumber  String
+    mobileNumber      String
+    accounts          Account[]
+    sessions          Session[]
 }
 
 model VerificationToken {

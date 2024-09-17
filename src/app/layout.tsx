@@ -9,6 +9,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import Header from "./_components/shared/Header";
 import Navbar from "./_components/shared/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Tender",
@@ -42,6 +43,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster />
             {/* Container */}
             <div className="mx-auto max-w-[1500px] px-5">
               <div className="mb-7">
