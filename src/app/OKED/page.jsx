@@ -1,11 +1,9 @@
 import React from "react";
-import fs from 'fs';
-import path from 'path';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import {Button} from "@/components/ui/button";
 
-
+/*
 const filePath = path.join(``, 'ОКЭД.json');
 let dataa
 
@@ -25,7 +23,7 @@ fs.readFile(filePath, 'utf8', (err, data) => {
     } catch (error) {
         console.error('Error parsing JSON:', error);
     }
-});
+});*/
 
 const accordionData = [
     {
@@ -109,9 +107,8 @@ const accordionData = [
 ];
 
 function RecursiveAccordionItem({ item, index, styles, margin1}) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     let margin  = margin1 ?? 0;
-    margin += 50
+    margin = margin1
     return (
         <AccordionItem value={`item-${index}`} className={`${styles}`}>
             <AccordionTrigger>{item.title}</AccordionTrigger>
@@ -156,7 +153,7 @@ export default function Blog() {
 
                 </h1>
             </div>
-                <div className={`w-1/2 flex flex-col`}>
+                <div className={"flex flex-col"}>
                     <Accordion type="single" collapsible className="w-full">
                         {accordionData.map((item, index) => (
                             <RecursiveAccordionItem key={index} item={item} index={index} />
