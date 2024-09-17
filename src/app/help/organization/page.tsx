@@ -44,6 +44,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
+import { Separator } from "@radix-ui/react-dropdown-menu";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -212,38 +213,34 @@ export default function Home() {
       </div>
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">Партнерство</h1>
-        <h2 className="w-full text-[18px] font-semibold text-black">
-          Вы можете оставить предложение о партнерстве в любом лоте. Для этoго
-          откройте нужный лот, перейдите во вкладку партнерство и оставьте свое
-          предложение.
+        <h2>
+          Проверка контрагентов Начать проверять Контрагент — это физическое или
+          юридическое лицо, которое является одной стороной заключаемой
+          гражданской или правовой договоренности. <br />
+          <span className="h-[50px] w-full text-[22px] font-semibold leading-[50px] text-black">
+            Контрагенты Казахстана
+          </span>{" "}
+          <br />
+          Понятие недобросовестного, ненадежного контрагента широко используется
+          в тендерах. Используются реестры недобросовестных поставщиков, чтобы
+          ограничить участие неблагонадежных поставщиков в закупках. Такая
+          практика результативна для любого бизнеса, но лучше предотвращать
+          подобные ситуации. Недобросовестный партнер — это упущенная прибыль,
+          время, испорченная репутация и убытки. <br />
+          <span className="h-[50px] w-full text-[22px] font-semibold leading-[50px] text-black">
+            Поиск и проверка контрагентов
+          </span>{" "}
+          <br />
+          Поиск юридических лиц и индивидуальных предпринимателей осуществляется
+          по БИН/ИИН или наименованию компании. <br />
+          <span className="h-[50px] w-full align-bottom text-[22px] font-semibold leading-[50px] text-black">
+            ЛУЧШЕЕ ПРЕДПРИЯТИЕ КАЗАХСТАНА
+          </span>{" "}
+          <br />
+          Согласно критериям Национального рейтинга качества товаров и услуг, мы
+          были удостоены почетного звания "ЛУЧШЕЕ ПРЕДПРИЯТИЕ КАЗАХСТАНА 2022" в
+          своей сфере деятельности.
         </h2>
-        <div className="flex w-full items-center justify-between">
-          <p>В каталоге 69 лотов. Показаны 1-20</p>
-          <div className="flex items-center gap-[15px]">
-            <p>Сортировать по:</p>
-            <Select defaultValue="sum">
-              <SelectTrigger className="h-[40px] w-[140px]">
-                <SelectValue placeholder="Select a fruit" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="sum">Сумма</SelectItem>
-                  <SelectItem value="up">Опубликован</SelectItem>
-                  <SelectItem value="end">Завершение</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <FaSortAmountDown
-              style={{ transform: `rotate(${sortMax ? 0 : 180}deg)` }}
-              onClick={() => setSortMax(!sortMax)}
-            />
-          </div>
-        </div>
-        <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array.from({ length: 101 }).map((_, i) => (
-            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
-          ))}
-        </ul>
       </div>
     </main>
   );
