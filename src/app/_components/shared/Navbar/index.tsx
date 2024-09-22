@@ -38,17 +38,17 @@ const components: NavbarComponent[] = [
       {
         title: "По предоплате",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Все тендера по предоплате",
       },
       {
         title: "Все тендеры Казахстана",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Все тендера в Казахстане",
       },
       {
         title: "Все тендеры России",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Все тендера в России",
       },
     ],
   },
@@ -58,12 +58,12 @@ const components: NavbarComponent[] = [
       {
         title: "Найти партнера",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
+        description: "Поиск партнеров",
       },
       {
         title: "Об услуге",
         href: "/tenders/by-sites",
-        description: "Все тендера по площадкам",
+        description: "Описание системы Партнерства",
       },
     ],
   },
@@ -73,12 +73,12 @@ const components: NavbarComponent[] = [
       {
         title: "Проверить контрагента",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
+        description: "Проверка имеющийся базы",
       },
       {
         title: "Об услуге",
         href: "/tenders/by-sites",
-        description: "Все тендера по площадкам",
+        description: "Описание системы Контрагентов",
       },
     ],
   },
@@ -86,44 +86,9 @@ const components: NavbarComponent[] = [
     trigger: "Тарифы",
     values: [
       {
-        title: "Тендеры",
+        title: "Тарифы",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
-      },
-      {
-        title: "Контрагенты",
-        href: "/tenders/by-sites",
-        description: "Все тендера по площадкам",
-      },
-      {
-        title: "Договоры",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
-      },
-      {
-        title: "Нерезиденты",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
-      },
-      {
-        title: "Обучение",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
-      },
-      {
-        title: "ПКО",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
-      },
-      {
-        title: "Дополнительные услуги",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
-      },
-      {
-        title: "Реклама на сайте",
-        href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Все про тарифные планы на сайте",
       },
     ],
   },
@@ -133,7 +98,7 @@ const components: NavbarComponent[] = [
       {
         title: "Планы",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
+        description: "Все про Планы на сайте",
       },
     ],
   },
@@ -143,17 +108,17 @@ const components: NavbarComponent[] = [
       {
         title: "Договоры",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
+        description: "База данных по договорам",
       },
       {
         title: "Предметы договоров",
         href: "/tenders/by-sites",
-        description: "Все тендера по площадкам",
+        description: "Данные по предметам из договоров",
       },
       {
         title: "Об услуге",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Описание системы Договоров",
       },
     ],
   },
@@ -163,42 +128,42 @@ const components: NavbarComponent[] = [
       {
         title: "Аналитика по договорам",
         href: "/tenders/by-areas",
-        description: "Все тендера по областям Казахстана",
+        description: "Доступная аналитика по договорам",
       },
       {
         title: "Аналитика по лотам",
         href: "/tenders/by-sites",
-        description: "Все тендера по площадкам",
+        description: "Доступная аналитика по лотам",
       },
       {
         title: "Блог",
         href: "/blog",
-        description: "Все тендера по категориям",
+        description: "Наш блог с полезной информацией",
       },
       {
         title: "Помощь по сайту",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Инструкция пользования сайтом",
       },
       {
         title: "Анкета ЭЦП",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Анкета ЭЦП для заполнения",
       },
       {
         title: "ОКЭД",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Данные ОКЭД для вашего пользования",
       },
       {
         title: "ТН ВЭД",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Данные ТН ВЭД для вашего пользования",
       },
       {
         title: "КАТО",
         href: "/tenders/by-categories",
-        description: "Все тендера по категориям",
+        description: "Данные КАТО для вашего пользования",
       },
     ],
   },
