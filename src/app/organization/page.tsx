@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import { RiFolderChart2Line } from "react-icons/ri";
@@ -12,23 +12,6 @@ import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { TrendingUp } from "lucide-react";
 import {
   FaAccessibleIcon,
   FaRegFileLines,
@@ -37,55 +20,11 @@ import {
   FaStar,
 } from "react-icons/fa6";
 import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt, FaSortAmountDown } from "react-icons/fa";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { FaCommentAlt } from "react-icons/fa";
 import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
 import { IoMdSearch } from "react-icons/io";
 
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-];
-
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig;
-
 export default function Home() {
-  const [sortMax, setSortMax] = React.useState(true);
   return (
     <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
       <div className="flex h-full w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">

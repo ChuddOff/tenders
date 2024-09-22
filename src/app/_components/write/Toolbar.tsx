@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 "use client";
 
 // icons
@@ -7,11 +8,12 @@ import { BsListNested } from "react-icons/bs";
 import { FaQuoteLeft } from "react-icons/fa";
 import { MdOutlineFormatBold, MdUndo, MdRedo } from "react-icons/md";
 // hooks / react types
-import { useRef, useState, type ChangeEvent } from "react";
+import { useRef, type ChangeEvent } from "react";
 
 // tiptap types
 import type { Editor } from "@tiptap/react";
 import { PublishModal } from "./PublishModal";
+import { env } from "@/env";
 
 interface ToolbarProps {
   editor: Editor | null;
@@ -29,21 +31,20 @@ export default function Toolbar({ editor }: ToolbarProps) {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append(
-        "upload_preset",
-        process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string,
-      );
+      formData.append("upload_preset", env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME);
 
       try {
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+          `https://api.cloudinary.com/v1_1/${env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
           {
             method: "POST",
             body: formData,
           },
         );
 
-        const data = await response.json();
+        const data = (await response.json()) as {
+          secure_url: string;
+        };
 
         editor?.commands.setImage({ src: data.secure_url });
         editor?.commands.createParagraphNear();

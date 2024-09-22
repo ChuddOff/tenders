@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,

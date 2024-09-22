@@ -1,29 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { SlArrowDown } from "react-icons/sl";
-import {
-  FaAccessibleIcon,
-  FaHandshakeSimple,
-  FaRegCircle,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
+import { FaRegCircle, FaStar } from "react-icons/fa6";
 import React from "react";
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
-import { LuFolderCog } from "react-icons/lu";
-import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
-import { RiArrowDownSFill, RiFolderChart2Line } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
-import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
-import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
+import { IoFolderOutline } from "react-icons/io5";
+import { RiArrowDownSFill } from "react-icons/ri";
+import { BsPinAngleFill } from "react-icons/bs";
+import { TbEyeCheck } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
-import { Label } from "recharts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import RegisterForm from "../_components/auth/RegisterForm";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
 import {
   Form,
@@ -40,14 +24,12 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSubContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuSub,
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "@/components/ui/button";
 
@@ -104,7 +86,7 @@ export default function Home() {
               <BiHide />
             </div>
           </div>
-          <div className="flex w-full items-start items-center justify-start justify-around gap-[20px] px-[20px] pb-[20px]">
+          <div className="flex w-full items-start gap-[20px] px-[20px] pb-[20px]">
             <div className="flex flex-col items-center gap-[10px]">
               <h3>До окончания:</h3>
               <div className="flex h-[150px] w-[150px] flex-wrap items-center justify-center rounded-[20px] bg-[rgba(217,217,217,0.41)]">
@@ -193,7 +175,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-2 flex w-full items-center justify-center px-2">
-          <Tabs defaultValue="login" className="w-full" defaultValue={"info"}>
+          <Tabs className="w-full" defaultValue={"info"}>
             <TabsList className="w-full">
               <TabsTrigger value="info" className="w-full">
                 Информация по лоту

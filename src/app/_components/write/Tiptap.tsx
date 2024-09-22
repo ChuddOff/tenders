@@ -11,7 +11,6 @@ import Highlight from "@tiptap/extension-highlight";
 import Toolbar from "./Toolbar";
 
 // hooks
-import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import Spinner from "@/components/ui/spinner";
 

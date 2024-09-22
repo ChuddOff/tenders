@@ -1,4 +1,4 @@
-import type { JsonValue, Node } from "types";
+import type { JsonValue, Node } from "@/types";
 
 export const isValidNode = (node: JsonValue): node is Node => {
   if (typeof node !== "object" || node === null || !("type" in node)) {

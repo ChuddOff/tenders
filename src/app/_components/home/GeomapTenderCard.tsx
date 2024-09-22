@@ -1,13 +1,11 @@
 import React from "react";
-import { FaHandshakeSimple, FaMoneyCheck } from "react-icons/fa6";
+import { FaMoneyCheck } from "react-icons/fa6";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  // TODO: remove this later
-  sum?: number;
-  status?: string; // TODO: add from Prisma
+  status?: string;
 }
 
-export default function Card({ sum, status, className }: Props) {
+export default function Card({ className }: Props) {
   return (
     <div
       className={`flex flex-col items-center gap-3 rounded-3xl bg-main px-5 py-3 ${className ?? ""}`}

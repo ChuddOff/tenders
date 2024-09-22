@@ -1,4 +1,4 @@
-import { SlArrowDown } from "react-icons/sl";
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 import "../styles/globals.css";
@@ -8,7 +8,6 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { BiSolidShieldAlt2 } from "react-icons/bi";
 import { FaBalanceScaleRight } from "react-icons/fa";
 import TenderCard from "./_components/shared/TenderCard";
-import GeomapTenderCard from "./_components/home/GeomapTenderCard";
 import {
   Carousel,
   CarouselContent,
@@ -85,21 +84,20 @@ export default async function Home() {
     "/carousel/5.png",
   ];
 
-
   return (
     <main className="w-full">
       <Carousel className="mt-[50px] max-h-[670px] w-full">
         <CarouselContent className="max-h-[670px]">
           {carouselItems.map((item, index) => (
-              <CarouselItem key={index} className="max-h-[670px]">
-                <div className="p-0">
-                  <Card className="h-[656px] w-full overflow-hidden p-0">
-                    <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
-                      <Image src={item} alt="test" width={1500} height={1500} />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
+            <CarouselItem key={index} className="max-h-[670px]">
+              <div className="p-0">
+                <Card className="h-[656px] w-full overflow-hidden p-0">
+                  <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
+                    <Image src={item} alt="test" width={1500} height={1500} />
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
           ))}
         </CarouselContent>
         <CarouselPrevious />
@@ -196,7 +194,7 @@ export default async function Home() {
 
       {/* Map */}
 
-      <Map/>
+      <Map />
 
       <div className="mt-5 flex items-start justify-center gap-14 max-[1060px]:flex-col max-[1060px]:items-center">
         {/* Blog item */}

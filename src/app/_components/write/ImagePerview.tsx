@@ -1,7 +1,8 @@
 "use client";
 
+import { env } from "@/env";
 import Image from "next/image";
-import { ChangeEvent, useRef, useState } from "react";
+import { type ChangeEvent, useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { toast } from "sonner";
 
@@ -19,21 +20,21 @@ export default function ImagePerview({ onSuccess }: Props) {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append(
-        "upload_preset",
-        process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME as string,
-      );
+      formData.append("upload_preset", env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME);
 
       try {
         const response = await fetch(
-          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+          `https://api.cloudinary.com/v1_1/${env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
           {
             method: "POST",
             body: formData,
           },
         );
 
-        const data = await response.json();
+        const data = (await response.json()) as {
+          secure_url: string;
+        };
+
         setPerviewSrc(data.secure_url);
         onSuccess?.(data.secure_url);
       } catch (error) {
