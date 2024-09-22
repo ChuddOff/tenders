@@ -21,7 +21,6 @@ interface RecursiveAccordionProps {
   item: AccordionItemType;
   index: number;
   styles?: string;
-  margin1?: number;
 }
 
 const accordionData: AccordionItemType[] = [
@@ -113,9 +112,7 @@ const accordionData: AccordionItemType[] = [
   },
 ];
 
-function RecursiveAccordionItem({item, index, styles, margin1}: RecursiveAccordionProps) {
-  let margin:number = margin1 ?? 0;
-
+function RecursiveAccordionItem({item, index, styles}: RecursiveAccordionProps) {
   return (
       <AccordionItem value={`item-${index}`} className={`${styles}`}>
         <AccordionTrigger>{item.title}</AccordionTrigger>
@@ -126,11 +123,10 @@ function RecursiveAccordionItem({item, index, styles, margin1}: RecursiveAccordi
               <Accordion type="single" collapsible className="w-full">
                 {item.content.map((subItem, subIndex) => (
                     <RecursiveAccordionItem
-                        margin1={margin}
                         key={subIndex}
                         item={subItem}
                         index={subIndex}
-                        styles={`ml-[${margin}px]`}
+                        styles={`ml-[50px]`}
                     />
                 ))}
               </Accordion>
@@ -157,7 +153,7 @@ export default function Blog() {
                       ОКЭД - это общий государственный классификатор видов
                       экономической деятельности на уровне пяти знаков,
                       разработанный Комитетом по статистике МНЭ РК и утвержденный
-                      Приказом №68-од от 22.02.2019 г..
+                      Приказом №68-од от 22.02.2019 г.
                     </p>
                   </div>
                 </div>
@@ -165,10 +161,10 @@ export default function Blog() {
             </HoverCard>
           </h1>
         </div>
-        <div className={"flex w-1/3 flex-col"}>
+        <div className={"flex w-1/2 flex-col"}>
           <Accordion type="single" collapsible className="w-full">
             {accordionData.map((item, index) => (
-                <RecursiveAccordionItem key={index} item={item} index={index} />
+                <RecursiveAccordionItem key={index} item={item} index={index}/>
             ))}
           </Accordion>
         </div>
