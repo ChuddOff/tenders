@@ -12,8 +12,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import Map from "@/app/_components/Map/Map";
@@ -91,8 +89,8 @@ export default async function Home() {
           {carouselItems.map((item, index) => (
             <CarouselItem key={index} className="max-h-[670px]">
               <div className="p-0">
-                <Card className="h-[656px] w-full overflow-hidden p-0">
-                  <CardContent className="flex aspect-square h-full w-full items-center justify-center p-0">
+                <Card className="w-full overflow-hidden p-0">
+                  <CardContent className="h-full w-full p-0">
                     <Image src={item} alt="test" width={1500} height={1500} />
                   </CardContent>
                 </Card>
@@ -100,8 +98,6 @@ export default async function Home() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
 
       <div className="mt-[50px] flex w-full flex-col items-center gap-[50px]">
