@@ -1,60 +1,29 @@
 "use client";
 
 import avatar from "@/images/ava.jpg";
-import Link from "next/link";
-import { SlArrowDown } from "react-icons/sl";
 import {
   FaAccessibleIcon,
-  FaHandshakeSimple,
-  FaRegCircle,
   FaRegFileLines,
   FaRegHandshake,
   FaSearchengin,
   FaStar,
 } from "react-icons/fa6";
-import { FaMoneyCheck } from "react-icons/fa";
 import React from "react";
-import { GoArrowUpRight } from "react-icons/go";
 
 import { GoGitPullRequest } from "react-icons/go";
 import { FaCommentAlt } from "react-icons/fa";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
-import {
-  RiArrowDownSFill,
-  RiArrowDropDownLine,
-  RiFolderChart2Line,
-} from "react-icons/ri";
-import {
-  MdOutlineManageSearch,
-  MdOutlineSendTimeExtension,
-  MdScheduleSend,
-} from "react-icons/md";
+import { RiFolderChart2Line } from "react-icons/ri";
+import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 import { BiHide } from "react-icons/bi";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Bar, BarChart, Label, XAxis, YAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { Label } from "recharts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LoginForm from "../_components/auth/LoginForm";
-import RegisterForm from "../_components/auth/RegisterForm";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
@@ -193,7 +162,7 @@ export default function Home() {
           Личный кабинет
         </h1>
         <div className="mt-2 flex w-full items-center justify-center px-2">
-          <Tabs defaultValue="login" className="w-full" defaultValue={"info"}>
+          <Tabs className="w-full" defaultValue={"info"}>
             <TabsList
               className="w-full text-base font-bold"
               defaultValue={"info"}
@@ -232,8 +201,8 @@ export default function Home() {
                     className="h-[150px] w-[150px] rounded-full"
                   />
                   <div className="grid w-full max-w-sm items-center gap-1.5">
-                    <Label htmlFor="picture">Picture</Label>
-                    <Input id="picture" type="file" />
+                    <Label>Picture</Label>
+                    <Input type="file" />
                   </div>
                 </div>
                 <div className="flex max-w-[500px] flex-col gap-[15px]">
@@ -300,15 +269,15 @@ export default function Home() {
                 <RadioGroup defaultValue="comfortable">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="default" id="r1" />
-                    <Label htmlFor="r1">Default</Label>
+                    <Label>Default</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="comfortable" id="r2" />
-                    <Label htmlFor="r2">Comfortable</Label>
+                    <Label>Comfortable</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="compact" id="r3" />
-                    <Label htmlFor="r3">Compact</Label>
+                    <Label>Compact</Label>
                   </div>
                 </RadioGroup>
               </div>

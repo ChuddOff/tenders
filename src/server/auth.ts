@@ -7,7 +7,7 @@ import {
 import { type Adapter } from "next-auth/adapters";
 
 import { db } from "@/server/db";
-import type { Role, User } from "@prisma/client";
+import type { User } from "@prisma/client";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 import { LoginSchema } from "@/validators/zod";
@@ -23,7 +23,7 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 
-type OmitedUser = Omit<User, "id" | "password">
+type OmitedUser = Omit<User, "id" | "password">;
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: OmitedUser;
@@ -54,11 +54,12 @@ export const authOptions: NextAuthOptions = {
         where: { id: token.sub },
       });
 
-      if(!dbUser) {
-        return token
+      if (!dbUser) {
+        return token;
       }
 
-      const {password, id, ...user} = dbUser
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, id, ...user } = dbUser;
 
       return {
         sub: token.sub,
@@ -70,7 +71,7 @@ export const authOptions: NextAuthOptions = {
         ...session,
         user: {
           id: token.sub,
-          ...token
+          ...token,
         },
       };
     },

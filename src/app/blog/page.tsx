@@ -20,7 +20,11 @@ export default function Blog() {
   const isNoPostFinded = !blogs.isPending && blogs.data?.posts.length === 0;
 
   useEffect(() => {
-    utils.blog.getLatestPosts.fetch({ cursor: currentPage, limit: pagesLimit });
+    void utils.blog.getLatestPosts.fetch({
+      cursor: currentPage,
+      limit: pagesLimit,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (

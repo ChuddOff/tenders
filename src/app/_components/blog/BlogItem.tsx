@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Post } from "@prisma/client";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { shortString } from "@/lib/utils";
+import Image from "next/image";
 
 interface Props {
   item: Post;
@@ -20,7 +21,8 @@ export default function BlogItem({ item }: Props) {
         ratio={7 / 4}
         className="mx-auto mb-5 max-h-[320px] max-w-[500px]"
       >
-        <img
+        <Image
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           src={item.perviewImage}
           className="h-full w-full overflow-hidden rounded-xl"
           alt="test"

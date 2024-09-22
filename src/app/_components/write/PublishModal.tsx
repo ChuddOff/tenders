@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -16,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import ImagePerview from "./ImagePerview";
 import { api } from "@/trpc/react";
-import { Editor } from "@tiptap/react";
+import { type Editor } from "@tiptap/react";
 import { createPostSchema } from "@/validators/zod";
 import { ZodError } from "zod";
 import { toast } from "sonner";
