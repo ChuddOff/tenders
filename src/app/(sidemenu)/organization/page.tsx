@@ -3,6 +3,8 @@
 import { MdOutlineManageSearch } from "react-icons/md";
 import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
 import { IoMdSearch } from "react-icons/io";
+import TenderCard from "@/app/_components/shared/TenderCard";
+import React from "react";
 
 export default function Home() {
   return (
@@ -30,8 +32,17 @@ export default function Home() {
           </div>
         </div>
         <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array.from({ length: 101 }).map((_, i) => (
-            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
+          {Array.from({ length: 4 }).map((_, i) => (
+              <TenderCard
+                  key={i}
+                  titleClassname="max-w-80%"
+                  className="bg-main px-5 py-3 text-white"
+                  showCheckbox={false}
+                  showPinStar={false}
+                  showPlacment={false}
+                  showLeftDays={false}
+                  showStatus={false}
+              />
           ))}
         </ul>
       </div>

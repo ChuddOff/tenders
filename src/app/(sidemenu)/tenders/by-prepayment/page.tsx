@@ -17,6 +17,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import TenderCard from "@/app/_components/shared/TenderCard";
+import React from "react";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -81,6 +83,18 @@ export default function Home() {
           <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
         ))}
       </ul>
+      {Array.from({ length: 15 }).map((_, i) => (
+          <TenderCard
+              key={i}
+              titleClassname="max-w-80%"
+              className="bg-main px-5 py-3 text-white"
+              showCheckbox={false}
+              showPinStar={false}
+              showPlacment={false}
+              showLeftDays={false}
+              showStatus={false}
+          />
+      ))}
     </div>
   );
 }

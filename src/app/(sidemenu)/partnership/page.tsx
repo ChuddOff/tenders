@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { LuFolderCog } from "react-icons/lu";
 import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
 import { RiFolderChart2Line } from "react-icons/ri";
@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
+import TenderCard from "@/app/_components/shared/TenderCard";
 
 export default function Home() {
   const [sortMax, setSortMax] = useState(true);
@@ -62,8 +63,17 @@ export default function Home() {
           </div>
         </div>
         <ul className="flex w-full flex-wrap justify-between gap-[20px]">
-          {Array.from({ length: 101 }).map((_, i) => (
-            <GeomapTenderCard key={i} className="w-full max-w-[450px]" />
+          {Array.from({ length: 4 }).map((_, i) => (
+              <TenderCard
+                  key={i}
+                  titleClassname="max-w-80%"
+                  className="bg-main px-5 py-3 text-white"
+                  showCheckbox={false}
+                  showPinStar={false}
+                  showPlacment={false}
+                  showLeftDays={false}
+                  showStatus={false}
+              />
           ))}
         </ul>
       </div>
