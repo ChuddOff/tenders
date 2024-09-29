@@ -1,29 +1,11 @@
 "use client";
 
-import { LuFolderCog } from "react-icons/lu";
-import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
-import { RiFolderChart2Line } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
-import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
-import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
-import { BiHide } from "react-icons/bi";
-
 import { Button } from "@/components/ui/button";
-
-import {
-  FaAccessibleIcon,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
-      <div className="flex w-full flex-col items-start justify-start gap-[20px]">
+    <main className="w-full gap-[52px] px-[60px] flex justify-center">
+      <div className="flex w-2/3 flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">
           Анкета для регистрации на тендерных площадках
         </h1>
