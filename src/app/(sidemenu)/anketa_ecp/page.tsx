@@ -22,7 +22,7 @@ import { FaCommentAlt } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <main className="mt-[100px] flex w-full gap-[52px] px-[60px]">
+    <main className="mt-[100px] flex w-full gap-[52px] px-[60px] max-[1150px]:mt-[0px] max-[1150px]:gap-[0px] max-[1150px]:px-[10px]">
       <div className="flex w-full flex-col items-start justify-start gap-[20px]">
         <h1 className="text-[34px] font-bold text-black">
           Анкета для регистрации на тендерных площадках

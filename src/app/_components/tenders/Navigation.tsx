@@ -1,3 +1,18 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { BiHide } from "react-icons/bi";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import {
@@ -16,9 +31,38 @@ import { RiFolderChart2Line } from "react-icons/ri";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
 
 export default function Navigation() {
+  if (window.innerWidth < 1150)
+    return (
+      <div className="grid grid-cols-2 gap-2">
+        <Sheet>
+          <SheetTrigger
+            asChild
+            className="fixed bottom-[20px] left-[20px] z-50"
+          >
+            <Button variant="outline">Открыть меню</Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0">
+            <div className="flex h-full overflow-y-scroll">
+              <div className="flex w-full flex-col gap-[15px] rounded-[20px] p-[20px_30px] backdrop-blur-[35px]">
+                <Menu />
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
+    );
+
   return (
     <div className="flex w-full max-w-[365px] flex-col gap-[15px] rounded-[20px] bg-[rgba(217,217,217,0.41)] p-[20px_30px] backdrop-blur-[35px]">
-      <h2 className="text-center text-[24px] font-bold leading-[167%] text-black">
+      <Menu />
+    </div>
+  );
+}
+
+const Menu = () => {
+  return (
+    <>
+      <h2 className="text-center text-[24px] font-bold uppercase leading-[167%] text-black">
         тендеры и закупки
       </h2>
       <hr className="h-[2px] w-full max-w-[300px] bg-main" />
@@ -143,6 +187,6 @@ export default function Navigation() {
           Мои рефералы
         </a>
       </div>
-    </div>
+    </>
   );
-}
+};
