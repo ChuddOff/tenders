@@ -57,12 +57,12 @@ const components: NavbarComponent[] = [
     values: [
       {
         title: "Найти партнера",
-        href: "/tenders/by-areas",
+        href: "/partnership",
         description: "Поиск партнеров",
       },
       {
         title: "Об услуге",
-        href: "/tenders/by-sites",
+        href: "/help/partnership",
         description: "Описание системы Партнерства",
       },
     ],
@@ -72,12 +72,12 @@ const components: NavbarComponent[] = [
     values: [
       {
         title: "Проверить контрагента",
-        href: "/tenders/by-areas",
+        href: "/organization",
         description: "Проверка имеющийся базы",
       },
       {
         title: "Об услуге",
-        href: "/tenders/by-sites",
+        href: "/help/organization",
         description: "Описание системы Контрагентов",
       },
     ],
@@ -147,22 +147,22 @@ const components: NavbarComponent[] = [
       },
       {
         title: "Анкета ЭЦП",
-        href: "/tenders/by-categories",
+        href: "/anketa_ecp",
         description: "Анкета ЭЦП для заполнения",
       },
       {
         title: "ОКЭД",
-        href: "/tenders/by-categories",
+        href: "/OKED",
         description: "Данные ОКЭД для вашего пользования",
       },
       {
         title: "ТН ВЭД",
-        href: "/tenders/by-categories",
+        href: "/",
         description: "Данные ТН ВЭД для вашего пользования",
       },
       {
         title: "КАТО",
-        href: "/tenders/by-categories",
+        href: "/",
         description: "Данные КАТО для вашего пользования",
       },
     ],

@@ -14,6 +14,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import TenderCard from "@/app/_components/shared/TenderCard";
+import React from "react";
 
 const chartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
@@ -25,26 +27,26 @@ const chartData = [
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "Тендеры",
   },
   chrome: {
-    label: "Chrome",
+    label: "Абайская область",
     color: "hsl(var(--chart-1))",
   },
   safari: {
-    label: "Safari",
+    label: "Караганда",
     color: "hsl(var(--chart-2))",
   },
   firefox: {
-    label: "Firefox",
+    label: "Астана",
     color: "hsl(var(--chart-3))",
   },
   edge: {
-    label: "Edge",
+    label: "Аккмолинская область",
     color: "hsl(var(--chart-4))",
   },
   other: {
-    label: "Other",
+    label: "Казахстан",
     color: "hsl(var(--chart-5))",
   },
 } satisfies ChartConfig;
@@ -112,6 +114,19 @@ export default function Home() {
           </ChartContainer>
         </CardContent>
       </Card>
+
+      {Array.from({ length: 15 }).map((_, i) => (
+          <TenderCard
+              key={i}
+              titleClassname="max-w-80%"
+              className="bg-main px-5 py-3 text-white"
+              showCheckbox={false}
+              showPinStar={false}
+              showPlacment={false}
+              showLeftDays={false}
+              showStatus={false}
+          />
+      ))}
     </div>
   );
 }

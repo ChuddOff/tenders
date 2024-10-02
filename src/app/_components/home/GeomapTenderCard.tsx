@@ -8,7 +8,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export default function Card({ className }: Props) {
   return (
     <div
-      className={`flex flex-col items-center gap-3 rounded-3xl bg-main px-5 py-3 ${className ?? ""}`}
+      className={`flex w-[350px] flex-col items-center gap-3 rounded-3xl bg-main px-5 py-3 ${className ?? ""}`}
     >
       <p className="font-comfortaa text-sm font-normal text-[#e6e6e6]">
         Работы по установке (монтажу) оборудования/приборов учета воды.
