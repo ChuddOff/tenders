@@ -15,10 +15,10 @@ const Map = () => {
                 </h3>
                 <hr className="h-[2px] w-full max-w-[300px] bg-main"/>
             </div>
-            <div className="flex items-center justify-center gap-[25px] max-[1410px]:flex-col">
+            <div className="flex items-center justify-center gap-[25px] max-[768px]:flex-col">
                 {/* Map */}
                 <div>
-                    <svg width="1000" height="544" viewBox="0 0 1000 544" fill="none"
+                    <svg width="1000" className={`max-[1400px]:w-[700px] max-[1000px]:w-full`} height="544" viewBox="0 0 1000 544" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_68_537)">
                             <path fill-rule="evenodd" clip-rule="evenodd"
