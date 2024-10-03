@@ -1,23 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { LuFolderCog } from "react-icons/lu";
-import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
-import { RiFolderChart2Line } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
-import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
-import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
-import { BiHide } from "react-icons/bi";
 
-import {
-  FaAccessibleIcon,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt, FaSortAmountDown } from "react-icons/fa";
+import { FaSortAmountDown } from "react-icons/fa";
 import {
   Select,
   SelectContent,
@@ -26,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
 import TenderCard from "@/app/_components/shared/TenderCard";
 
 export default function Home() {

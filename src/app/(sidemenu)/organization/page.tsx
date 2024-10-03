@@ -1,7 +1,6 @@
 "use client";
 
 import { MdOutlineManageSearch } from "react-icons/md";
-import GeomapTenderCard from "@/app/_components/home/GeomapTenderCard";
 import { IoMdSearch } from "react-icons/io";
 import TenderCard from "@/app/_components/shared/TenderCard";
 import React from "react";
