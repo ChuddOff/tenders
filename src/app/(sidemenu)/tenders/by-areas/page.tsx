@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import {Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis} from "recharts";
 import {
   type ChartConfig,
   ChartContainer,
@@ -16,40 +9,47 @@ import {
 } from "@/components/ui/chart";
 import TenderCard from "@/app/_components/shared/TenderCard";
 import React from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
-];
+  { month: "Мангистауская область", desktop: 99, mobile: 80 },
+  { month: "г. Астана и Акмолинская область", desktop: 99, mobile: 200 },
+  { month: "г. Алматы и Алматинская область", desktop: 99, mobile: 120 },
+  { month: "Атырауская область", desktop: 50, mobile: 190 },
+  { month: "г. Шымкент и Туркстанская область (ЮКО)", desktop: 42, mobile: 130 },
+  { month: "Карагандинская область", desktop: 36, mobile: 140 },
+  { month: "Павлодарская область", desktop: 33, mobile: 80 },
+  { month: "Костанайская область", desktop: 31, mobile: 200 },
+  { month: "Западно-Казахстанская область (ЗКО)", desktop: 30, mobile: 120 },
+  { month: "Кызылординская область", desktop: 27, mobile: 190 },
+  { month: "Жамбылская область", desktop: 27, mobile: 130 },
+  { month: "Актюбинская область", desktop: 25, mobile: 140 },
+  { month: "Жетысуская область", desktop: 21, mobile: 80 },
+  { month: "Северо-Казахстанская область (СКО)", desktop: 17, mobile: 200 },
+  { month: "Восточно-Казахстанская область (ВКО)", desktop: 17, mobile: 120 },
+  { month: "Улытауская область", desktop: 9, mobile: 190 },
+  { month: "Абайская область", desktop: 8, mobile: 130 },
+]
 
 const chartConfig = {
-  visitors: {
-    label: "Тендеры",
-  },
-  chrome: {
-    label: "Абайская область",
+  desktop: {
+    label: "млдр.",
     color: "hsl(var(--chart-1))",
   },
-  safari: {
-    label: "Караганда",
+  mobile: {
+    label: "Mobile",
     color: "hsl(var(--chart-2))",
   },
-  firefox: {
-    label: "Астана",
-    color: "hsl(var(--chart-3))",
+  label: {
+    color: "hsl(var(--background))",
   },
-  edge: {
-    label: "Аккмолинская область",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Казахстан",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig;
+} satisfies ChartConfig
 
 export default function Home() {
   return (
@@ -79,37 +79,57 @@ export default function Home() {
             </li>
           ))}
       </ul>
-      <Card className="w-full max-w-[500px]">
+      <Card className={`w-full`}>
         <CardHeader>
-          <CardTitle>Bar Chart - Mixed</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
+          <CardTitle>График</CardTitle>
+          <CardDescription>Общая сумма тендеров по областям</CardDescription>
         </CardHeader>
         <CardContent>
           <ChartContainer config={chartConfig}>
             <BarChart
-              accessibilityLayer
-              data={chartData}
-              layout="vertical"
-              margin={{
-                left: 0,
-              }}
+                accessibilityLayer
+                data={chartData}
+                layout="vertical"
+                margin={{
+                  right: 16,
+                }}
             >
+              <CartesianGrid horizontal={false} />
               <YAxis
-                dataKey="browser"
-                type="category"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) =>
-                  chartConfig[value as keyof typeof chartConfig]?.label
-                }
+                  dataKey="month"
+                  type="category"
+                  tickLine={false}
+                  tickMargin={10}
+                  axisLine={false}
+                  tickFormatter={(value) => value.slice(0, 3)}
+                  hide
               />
-              <XAxis dataKey="visitors" type="number" hide />
+              <XAxis dataKey="desktop" type="number" hide />
               <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                  cursor={false}
+                  content={<ChartTooltipContent indicator="line" />}
               />
-              <Bar dataKey="visitors" layout="vertical" radius={5} />
+              <Bar
+                  dataKey="desktop"
+                  layout="vertical"
+                  fill="var(--color-desktop)"
+                  radius={8}
+              >
+                <LabelList
+                    dataKey="month"
+                    position="insideLeft"
+                    offset={8}
+                    className="fill-[--color-label]"
+                    fontSize={12}
+                />
+                <LabelList
+                    dataKey="desktop"
+                    position="right"
+                    offset={8}
+                    className="fill-foreground"
+                    fontSize={12}
+                />
+              </Bar>
             </BarChart>
           </ChartContainer>
         </CardContent>
