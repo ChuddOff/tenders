@@ -54,10 +54,10 @@ const chartConfig = {
 export default function Home() {
   return (
     <div className="flex w-full flex-col items-start justify-start gap-[20px]">
-      <h1 className="text-[34px] font-bold text-black">
+      <h1 className="text-[34px] font-bold text-black dark:text-white">
         Тендеры по области Казахстана
       </h1>
-      <h2 className="max-w-[418px] text-[18px] font-semibold text-black">
+      <h2 className="max-w-[418px] text-[18px] font-semibold text-black dark:text-white">
         Выберите нужную вам область, чтобы посмотреть тендерыв по этой области
       </h2>
       <ul className="flex w-full flex-wrap justify-between gap-[20px]">
@@ -70,7 +70,7 @@ export default function Home() {
             >
               <div className="flex items-center gap-[10px]">
                 <div className="h-[10px] w-[10px] rounded-full bg-greenl" />
-                <p className="text-[18px] font-normal text-black">
+                <p className="text-[18px] font-normal text-black dark:text-white">
                   Абайская область
                 </p>
               </div>
@@ -116,16 +116,16 @@ export default function Home() {
       </Card>
 
       {Array.from({ length: 15 }).map((_, i) => (
-          <TenderCard
-              key={i}
-              titleClassname="max-w-80%"
-              className="bg-main px-5 py-3 text-white"
-              showCheckbox={false}
-              showPinStar={false}
-              showPlacment={false}
-              showLeftDays={false}
-              showStatus={false}
-          />
+        <TenderCard
+          key={i}
+          titleClassname="max-w-80%"
+          className="bg-main px-5 py-3 text-white"
+          showCheckbox={false}
+          showPinStar={false}
+          showPlacment={false}
+          showLeftDays={false}
+          showStatus={false}
+        />
       ))}
     </div>
   );

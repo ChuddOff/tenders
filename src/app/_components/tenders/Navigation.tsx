@@ -13,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useEffect, useState } from "react";
 import { BiHide } from "react-icons/bi";
 import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
 import {
@@ -29,27 +30,71 @@ import { LuFolderCog } from "react-icons/lu";
 import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
 import { RiFolderChart2Line } from "react-icons/ri";
 import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
+import { useSwipeable } from "react-swipeable";
 
 export default function Navigation() {
+  const [isOpening, setIsOpening] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [swipeProgress, setSwipeProgress] = useState<number>(0);
+
+  const handlers = useSwipeable({
+    onSwiping: (eventData) => {
+      setIsOpening(true);
+      if (!isOpen) {
+        setSwipeProgress(Math.min(280, eventData.deltaX));
+      } else if (isOpen) {
+        setSwipeProgress(Math.max(0, 280 + eventData.deltaX));
+      }
+      document.body.style.overflow = "hidden";
+    },
+    onSwiped: () => {
+      document.body.style.overflow = "auto";
+      setIsOpening(false);
+      if ((!isOpen && swipeProgress > 50) ?? (isOpen && swipeProgress > 230)) {
+        setSwipeProgress(280);
+        setIsOpen(true);
+      } else {
+        setSwipeProgress(0);
+        setIsOpen(false);
+      }
+    },
+    trackTouch: true,
+  });
+  useEffect(() => {
+    if (isOpen === true) {
+      document.body.style.overflow = "hidden";
+    }
+    if (isOpen === false) {
+      document.body.style.overflow = "auto";
+    }
+  }, [isOpen]);
+
   if (window.innerWidth < 1150)
     return (
-      <div className="grid grid-cols-2 gap-2">
-        <Sheet>
-          <SheetTrigger
-            asChild
-            className="fixed bottom-[20px] left-[20px] z-50"
+      <>
+        <div
+          className={`pointer-events-none fixed left-0 top-0 z-40 flex h-full items-end gap-[20px] ${!isOpening && "duration-300 ease-in-out"}`}
+          style={{
+            transform: `translateX(${Math.max(0, swipeProgress) - 280}px)`,
+          }}
+        >
+          <div
+            className={`pointer-events-auto z-50 flex h-full w-[280px] overflow-y-scroll border-r-[1px] border-black bg-white dark:bg-black`}
           >
-            <Button variant="outline">Открыть меню</Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="p-0">
-            <div className="flex h-full overflow-y-scroll">
-              <div className="flex w-full flex-col gap-[15px] rounded-[20px] p-[20px_30px] backdrop-blur-[35px]">
-                <Menu />
-              </div>
+            <div className="flex h-[100vh] w-[280px] flex-col gap-[15px] rounded-[20px] p-[20px_20px] backdrop-blur-[35px]">
+              <Menu />
             </div>
-          </SheetContent>
-        </Sheet>
-      </div>
+          </div>
+          <Button
+            {...handlers}
+            variant="outline"
+            className={`pointer-events-auto z-30 mb-[20px] ${!isOpening && "duration-300 ease-in-out"}`}
+            onClick={() => {}}
+          >
+            Открыть меню
+          </Button>
+        </div>
+      </>
     );
 
   return (
