@@ -101,6 +101,7 @@ export default function Home() {
                   tickLine={false}
                   tickMargin={10}
                   axisLine={false}
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                   tickFormatter={(value) => value.slice(0, 3)}
                   hide
               />
