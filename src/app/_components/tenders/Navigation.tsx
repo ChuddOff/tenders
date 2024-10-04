@@ -25,6 +25,8 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [swipeProgress, setSwipeProgress] = useState<number>(0);
 
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
   const handlers = useSwipeable({
     onSwiping: (eventData) => {
       setIsOpening(true);
@@ -56,6 +58,12 @@ export default function Navigation() {
       document.body.style.overflow = "auto";
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   if (window.innerWidth < 1150)
     return (
