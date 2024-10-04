@@ -1,24 +1,8 @@
 "use client";
 
 import avatar from "@/images/ava.jpg";
-import {
-  FaAccessibleIcon,
-  FaRegFileLines,
-  FaRegHandshake,
-  FaSearchengin,
-  FaStar,
-} from "react-icons/fa6";
+import { FaRegHandshake } from "react-icons/fa6";
 import React from "react";
-
-import { GoGitPullRequest } from "react-icons/go";
-import { FaCommentAlt } from "react-icons/fa";
-import { LuFolderCog } from "react-icons/lu";
-import { IoChatboxEllipsesSharp, IoFolderOutline } from "react-icons/io5";
-import { RiFolderChart2Line } from "react-icons/ri";
-import { MdOutlineSendTimeExtension, MdScheduleSend } from "react-icons/md";
-import { BsFillFileEarmarkPlusFill, BsPinAngleFill } from "react-icons/bs";
-import { TbEyeCheck, TbSquareRoundedPercentage } from "react-icons/tb";
-import { BiHide } from "react-icons/bi";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "recharts";
