@@ -77,6 +77,10 @@ export default function Navigation() {
             {...handlers}
             variant="outline"
             className={`pointer-events-auto z-30 mb-[20px] ${!isOpening && "duration-300 ease-in-out"}`}
+            onClick={() => {
+              setIsOpen(!isOpen);
+              setSwipeProgress(isOpen ? 0 : 280);
+            }}
           >
             Открыть меню
           </Button>

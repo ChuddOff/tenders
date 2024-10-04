@@ -59,7 +59,7 @@ export default function Home() {
       <h2 className="max-w-[418px] text-[18px] font-semibold text-black">
         Выберите нужную вам площадку, чтобы посмотреть тендерыв по этой площадке
       </h2>
-      <div className="flex w-full justify-between gap-[100px]">
+      <div className="flex w-full flex-wrap justify-between gap-[100px] max-[1150px]:justify-center max-[1150px]:gap-[20px]">
         <div className="flex h-[45px] items-center justify-center rounded-[10px] border-[1px] px-[30px]">
           <div className="flex items-center justify-between border-main px-[12px] py-[8px]">
             <input
@@ -133,16 +133,16 @@ export default function Home() {
         </CardContent>
       </Card>
       {Array.from({ length: 15 }).map((_, i) => (
-          <TenderCard
-              key={i}
-              titleClassname="max-w-80%"
-              className="bg-main px-5 py-3 text-white"
-              showCheckbox={false}
-              showPinStar={false}
-              showPlacment={false}
-              showLeftDays={false}
-              showStatus={false}
-          />
+        <TenderCard
+          key={i}
+          titleClassname="max-w-80%"
+          className="bg-main px-5 py-3 text-white"
+          showCheckbox={false}
+          showPinStar={false}
+          showPlacment={false}
+          showLeftDays={false}
+          showStatus={false}
+        />
       ))}
     </div>
   );
